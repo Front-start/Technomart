@@ -1,0 +1,84 @@
+//use http://www.font2web.com to generate all font formats
+.add-font(@font-url, @font-name, @font-weight: normal, @font-style: normal) {
+    font-family: @font-name;
+    font-weight: @font-weight;
+    font-style: @font-style;
+
+    src: url('@{font-folder}@{font-url}.eot'); // IE9 Compat Modes 
+    src: url('@{font-folder}@{font-url}.eot?#iefix') format('embedded-opentype'), // IE6-IE8 
+    url('@{font-folder}@{font-url}.woff') format('woff'), // Pretty Modern Browsers 
+    url('@{font-folder}@{font-url}.ttf') format('truetype'), // Safari, Android, iOS 
+    url('@{font-folder}@{font-url}.svg#@{font-name}') format('svg'); // Legacy iOS  
+}
+
+.transition(@prop: all,
+@time: 0.3s,
+@ease: ease-in-out) {
+    transition: @prop @time @ease;
+}
+
+.bg-img(@img,
+@pos: center center,
+@att: scroll) {
+    background-image: url('@{img-folder}@{img}');
+    background-repeat: no-repeat;
+    background-attachment: @att;
+    background-position: @pos;
+    background-size: cover;
+}
+
+.ff(@font,
+@zamena1) when (@zamena1 =ss) {
+    font-family: '@{font}',
+    'Arial',
+    sans-serif;
+}
+
+.ff(@font,
+@zamena1) when (@zamena1 =s) {
+    font-family: '@{font}',
+    'Times New Roman',
+    serif;
+}
+
+.text-stripes(@height: 1px,
+@color: #000) {
+    overflow: hidden;
+    text-align: center;
+    div {
+        position: relative;
+        display: inline-block;
+        &:before,
+        &:after {
+            position: absolute;
+            top: 50%;
+            width: 100vw;
+            height: @height;
+            content: '';
+            background: @color;
+        }
+        &:before {
+            right: 100%;
+            margin-right: 20%;
+        }
+        &:after {
+            left: 100%;
+            margin-left: 20%;
+        }
+    }
+}
+
+.placeholder-color(@color) {
+    &::-webkit-input-placeholder {
+        color: @color;
+    }
+    &::-moz-placeholder {
+        color: @color;
+    }
+    &:-ms-input-placeholder {
+        color: @color;
+    }
+    &::placeholder {
+        color: @color;
+    }
+}

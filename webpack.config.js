@@ -4,6 +4,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var ImageminPlugin = require("imagemin-webpack-plugin").default;
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+var WebpackCleanupPlugin = require("webpack-cleanup-plugin");
 
 module.exports = {
   entry: "./app/app.jsx",
@@ -55,6 +56,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new WebpackCleanupPlugin(),
     new ExtractTextPlugin("./styles.css"),
     new CopyWebpackPlugin([
       {

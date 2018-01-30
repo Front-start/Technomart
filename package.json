@@ -1,6 +1,6 @@
 {
   "name": "technomart",
-  "description": "Technomart template",
+  "description": "technomart_template",
   "version": "1.0.0",
   "author": "Antoshko",
   "scripts": {
@@ -31,23 +31,15 @@
     "imagemin-webpack-plugin": "^1.5.2",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
-    "lost": "^8.2.0",
     "postcss": "^6.0.14",
-    "postcss-font-magician": "^2.1.0",
     "postcss-loader": "^2.0.9",
     "postcss-sorting": "^3.1.0",
     "style-loader": "^0.19.1",
     "stylefmt": "^6.0.0",
-    "stylelint-config-lost": "^0.0.3",
-    "stylelint-config-standard": "^18.0.0",
     "uglifyjs-webpack-plugin": "^1.1.5",
     "webpack": "^3.6.0",
+    "webpack-cleanup-plugin": "^0.5.1",
     "webpack-dev-server": "^2.9.1"
-  },
-  "stylelint": {
-    "extends": [
-      "stylelint-config-lost"
-    ]
   },
   "browserslist": [
     "> 1%",

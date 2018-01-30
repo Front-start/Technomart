@@ -1,0 +1,36 @@
+.header-title {
+    display: flex;
+    position: relative;
+    height: 42px;
+    width: 220px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #ee3643;
+    font-size: 24px;
+    text-transform: uppercase;
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background-color: #b52933;
+        .transition;
+    }
+    &:hover {
+        background-color: #ca2c37;
+        &:after {
+            background-color: #9a212a;
+            .transition;
+        }
+    }
+    &:active {
+        background-color: #ba2732;
+        &:after {
+            background-color: #8e1e26;
+            .transition;
+        }
+    }
+}

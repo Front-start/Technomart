@@ -1,15 +1,6 @@
 module.exports = {
   plugins: [
     require("autoprefixer"),
-    require("postcss-font-magician")({
-      variants: {
-        Roboto: {
-          "300": [],
-          "400": [],
-          "700": []
-        }
-      }
-    }),
     require("css-mqpacker"),
     require("stylefmt"),
     require("postcss-sorting")({
@@ -197,7 +188,6 @@ module.exports = {
         "text-shadow"
       ],
       "unspecified-properties-position": "bottom"
-    }),
-    require("lost")
+    })
   ]
 };
