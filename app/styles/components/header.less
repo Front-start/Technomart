@@ -23,12 +23,19 @@
     }
 }
 
-header div {
-    display: flex;
+header .header-container .header-order-wrapper .header-btn-red {
+    background-color: #ee3643;
+    &:hover {
+        background-color: #ca2c37;
+    }
+    &:active {
+        background-color: #ba2732;
+    }
 }
 
 header {
     .header-title {
+        display: flex;
         position: relative;
         height: 42px;
         width: 220px;
@@ -124,7 +131,9 @@ header {
         font-size: 17px;
     }
     .header-order-wrapper {
+        display: flex;
         .header-bookmarks {
+            display: flex;
             padding-left: 50px;
             align-items: center;
             &:after {
@@ -140,6 +149,7 @@ header {
             .header-icons-animation;
         }
         .header-basket {
+            display: flex;
             padding-left: 50px;
             align-items: center;
             &:after {
@@ -152,9 +162,10 @@ header {
                 height: 42px;
                 background-size: 17px;
             }
-            .header-icons-animation;
+            .header-icons-animation
         }
         .header-order {
+            display: flex;
             justify-content: center;
             align-items: center;
             background-color: @green;

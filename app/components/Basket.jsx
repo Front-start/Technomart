@@ -7,7 +7,7 @@ class Basket extends React.Component {
 
     this.state = {
       bookmarks: 0,
-      basket: 0
+      basket: 10
     };
   }
 
@@ -15,12 +15,26 @@ class Basket extends React.Component {
     return (
       <div className="header-order-wrapper">
         <Link to="#">
-          <div className="header-bookmarks">
+          <div
+            className={
+              this.state.bookmarks > 0
+                ? "header-bookmarks header-btn-red"
+                : "header-bookmarks"
+            }
+          >
             Закладки: {this.state.bookmarks}
           </div>
         </Link>
         <Link to="#">
-          <div className="header-basket">Корзина: {this.state.basket}</div>
+          <div
+            className={
+              this.state.basket > 0
+                ? "header-basket header-btn-red"
+                : "header-basket"
+            }
+          >
+            Корзина: {this.state.basket}
+          </div>
         </Link>
         <Link to="#">
           <div className="header-order">
