@@ -12,21 +12,34 @@ import Breadcrumbs from "./components/Breadcrumbs.jsx";
 
 import style from "./styles/style.less";
 
+var redux = require("redux");
+import { Provider } from "react-redux";
+import reducer from "./components/reducer.jsx";
+
+var store = redux.createStore(reducer);
+
+store.dispatch({
+  type: "ADD_USER",
+  user: { name: "232" }
+});
+
 ReactDOM.render(
-  <Router>
-    <div className="wrapper">
-      <Header />
-      <Top />
-      <Nav />
-      <Breadcrumbs />
-      <div className="main">
-        <Switch>
-          <Route exact path="/" component={Main} />
-          <Route component={NotFound} />
-        </Switch>
+  <Provider store={store}>
+    <Router>
+      <div className="wrapper">
+        <Header />
+        <Top />
+        <Nav />
+        <Breadcrumbs />
+        <div className="main">
+          <Switch>
+            <Route exact path="/" component={Main} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  </Router>,
+    </Router>
+  </Provider>,
   document.getElementById("app")
 );

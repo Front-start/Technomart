@@ -1,39 +1,33 @@
 import React from "react";
 import { Link, BrowserRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import actions from "./actions.jsx";
+import { Map } from "immutable";
 
 class Basket extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      bookmarks: 0,
-      basket: 10
-    };
-  }
-
   render() {
     return (
       <div className="header-order-wrapper">
         <Link to="#">
           <div
             className={
-              this.state.bookmarks > 0
+              this.props.bookmarks > 0
                 ? "header-bookmarks header-btn-red"
                 : "header-bookmarks"
             }
           >
-            Закладки: {this.state.bookmarks}
+            Закладки: {this.props.bookmarks}
           </div>
         </Link>
         <Link to="#">
           <div
             className={
-              this.state.basket > 0
+              this.props.basket > 0
                 ? "header-basket header-btn-red"
                 : "header-basket"
             }
           >
-            Корзина: {this.state.basket}
+            Корзина: {this.props.basket}
           </div>
         </Link>
         <Link to="#">
@@ -46,4 +40,15 @@ class Basket extends React.Component {
   }
 }
 
-module.exports = Basket;
+function mapStateToProps(state) {
+  return {
+    bookmarks: Map.isMap(state.get("currentUser"))
+      ? state.get("currentUser").toJS().bookmarks.length
+      : "0",
+    basket: Map.isMap(state.get("currentUser"))
+      ? state.get("currentUser").toJS().basket.length
+      : "0"
+  };
+}
+
+module.exports = connect(mapStateToProps, actions)(Basket);

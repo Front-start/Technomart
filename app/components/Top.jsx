@@ -7,10 +7,16 @@ class Top extends React.Component {
       <div className="top">
         <div className="top-container">
           <div className="top-info">
-            infoinfoinfoinfo infoinfoinfoinfoinfoinfo
+            <p>
+              Интернет-магазин<br /> строительных материалов<br /> и
+              инструментов для ремонта
+            </p>
           </div>
           <div className="top-contacts">
-            contactscontactscontacts contactscontactscontacts
+            <div className="phone-number">+7 (812) 555-05-55</div>
+            <span className="address">
+              г. Санкт-Петербург, ул. Б. Конюшенная, д. 19/8
+            </span>
           </div>
           <div className="top-login">
             <Login />
