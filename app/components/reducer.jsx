@@ -7,8 +7,6 @@ let initialState = Object.assign(Storage, {
   items: []
 });
 
-console.log(initialState);
-
 var reducer = function(state = new Map(fromJS(initialState)), action) {
   switch (action.type) {
     case "ADD_USER":

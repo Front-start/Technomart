@@ -17,13 +17,14 @@
 }
 
 .bg-img(@img,
+@size: cover,
 @pos: center center,
 @att: scroll) {
     background-image: url('@{img-folder}@{img}');
     background-repeat: no-repeat;
     background-attachment: @att;
     background-position: @pos;
-    background-size: cover;
+    background-size: @size;
 }
 
 .ff(@font,

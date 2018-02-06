@@ -1,4 +1,8 @@
 .top {
+    .top-container {
+        align-items: flex-start;
+        padding-top: 46px;
+    }
     .top-info {
         display: flex;
         width: 300px;
@@ -27,11 +31,11 @@
             &:before {
                 content: '';
                 position: absolute;
-                top: 10px;
-                left: 13px;
-                height: 19px;
-                width: 19px;
-                background-image: url('/images/icons/icon-phone.svg');
+                height: 100%;
+                top: 0;
+                left: 0;
+                width: 44px;
+                .bg-img('/icons/icon-phone.svg', unset);
             }
         }
         .address {
@@ -40,7 +44,53 @@
             color: #32425c;
         }
     }
-    .top-login {
-        width: 300px;
+    .top-user-login {
+        width: 330px;
+        display: flex;
+        justify-content: end;
+        .login-form {
+            display: flex;
+        }
+        .user-info {
+            display: flex;
+            flex-basis: 0;
+            flex-wrap: wrap;
+            justify-content: center;
+            .user-menu {
+                display: flex;
+                text-align: left;
+                padding: 10px 20px;
+                ul {
+                    display: flex;
+                    list-style: none;
+                    li {
+                        &:nth-child(n+2) {
+                            position: relative;
+                            padding-left: 30px;
+                            &:before {
+                                content: '•';
+                                font-family: 'Arial';
+                                position: absolute;
+                                top: 0;
+                                left: 13px;
+                                font-size: 16px;
+                            }
+                        }
+                        a {
+                            font-size: 16px;
+                            text-decoration: underline;
+                            white-space: nowrap;
+                            color: @blue;
+                            &:hover {
+                                color: red;
+                            }
+                            &:active {
+                                color: gray;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

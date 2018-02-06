@@ -11,8 +11,8 @@ export let Storage = {
     },
     {
       id: 2,
-      name: "Vazgen",
-      surname: "Ara",
+      name: "Pyotr",
+      surname: "Ivanov",
       login: "1",
       password: "2",
       bookmarks: [1, 2, 3, 8],

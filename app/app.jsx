@@ -18,11 +18,6 @@ import reducer from "./components/reducer.jsx";
 
 var store = redux.createStore(reducer);
 
-store.dispatch({
-  type: "ADD_USER",
-  user: { name: "232" }
-});
-
 ReactDOM.render(
   <Provider store={store}>
     <Router>

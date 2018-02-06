@@ -1,0 +1,83 @@
+.top-user-login {
+    .btn {
+        position: relative;
+        font-family: 'cuprum';
+        font-size: 21px;
+        height: 46px;
+        color: rgba(0, 0, 0, 1);
+        background-color: #fff;
+        cursor: pointer;
+    }
+    .btn-login,
+    .btn-reg {
+        padding: 0 25px;
+        &:hover {
+            color: rgba(238, 54, 67, 1);
+        }
+        &:active {
+            color: rgba(0, 0, 0, .3);
+        }
+    }
+    .btn-login {
+        padding-left: 46px;
+        &:before {
+            position: absolute;
+            content: '';
+            .bg-img('/icons/icon-login.svg', unset);
+            top: 0;
+            left: 0;
+            width: 46px;
+            height: 100%;
+            opacity: .3;
+        }
+        &:hover {
+            &:before {
+                opacity: 1;
+            }
+        }
+        &:active {
+            &:before {
+                opacity: 0.3;
+            }
+        }
+    }
+    .btn-reg {
+        margin-left: 10px;
+    }
+    .btn-logout {
+        padding: 0 46px;
+        &:before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 46px;
+            top: 0;
+            left: 0;
+            .bg-img('/icons/icon-user.svg', unset);
+            opacity: .3;
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 46px;
+            top: 0;
+            right: 0;
+            .bg-img('/icons/icon-logout.svg', unset);
+            opacity: .3;
+        }
+        &:hover {
+            &:before,
+            &:after {
+                opacity: 1;
+            }
+        }
+        &:active {
+            color: rgba(0, 0, 0, .3);
+            &:before,
+            &:after {
+                opacity: .3;
+            }
+        }
+    }
+}

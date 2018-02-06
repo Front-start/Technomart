@@ -44,10 +44,10 @@ function mapStateToProps(state) {
   return {
     bookmarks: Map.isMap(state.get("currentUser"))
       ? state.get("currentUser").toJS().bookmarks.length
-      : "0",
+      : 0,
     basket: Map.isMap(state.get("currentUser"))
       ? state.get("currentUser").toJS().basket.length
-      : "0"
+      : 0
   };
 }
 

@@ -18,7 +18,7 @@ class Top extends React.Component {
               г. Санкт-Петербург, ул. Б. Конюшенная, д. 19/8
             </span>
           </div>
-          <div className="top-login">
+          <div className="top-user-login">
             <Login />
           </div>
         </div>
