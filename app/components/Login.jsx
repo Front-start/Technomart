@@ -22,14 +22,14 @@ let modalStyle = {
     right: 0,
     bottom: 0,
     margin: "20% auto",
-    border: "1px solid #ccc",
-    background: "#fff",
+    border: "none",
+    background: "#212a3a",
     overflow: "auto",
     WebkitOverflowScrolling: "touch",
     borderRadius: "4px",
     outline: "none",
     padding: "20px",
-    width: "300px"
+    width: "260px"
   }
 };
 
@@ -43,8 +43,8 @@ class Login extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
 
     this.state = {
-      loginInput: "",
-      passwordInput: "",
+      loginInput: "ravshan",
+      passwordInput: "isthebest",
       modalOpen: false
     };
   }
@@ -58,8 +58,8 @@ class Login extends React.Component {
   submit() {
     this.props.login(this.state.loginInput, this.state.passwordInput);
     this.setState({
-      loginInput: "",
-      passwordInput: "",
+      loginInput: "ravshan",
+      passwordInput: "isthebest",
       modalOpen: false
     });
   }
@@ -72,7 +72,7 @@ class Login extends React.Component {
       return (
         <div className="user-info">
           <button className="btn btn-logout" onClick={this.props.logout}>
-            {this.props.user.name}
+            {this.props.user.name} {this.props.user.surname}
           </button>
           <div className="user-menu">
             <ul>
@@ -101,9 +101,21 @@ class Login extends React.Component {
             onRequestClose={this.toggleModal}
             contentLabel="Modal"
           >
-            <input placeholder="Login" onChange={this.updateLoginInput} />
-            <input placeholder="Password" onChange={this.updatePasswordInput} />
-            <button onClick={this.submit}>Залогинироваться</button>
+            <div className="login-modal">
+              <input
+                placeholder="Login"
+                defaultValue="ravshan"
+                onChange={this.updateLoginInput}
+              />
+              <input
+                placeholder="Password"
+                defaultValue="isthebest"
+                onChange={this.updatePasswordInput}
+              />
+              <button className="btn" onClick={this.submit}>
+                Залогинироваться
+              </button>
+            </div>
           </Modal>
         </div>
       );
