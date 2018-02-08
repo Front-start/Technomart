@@ -1,6 +1,9 @@
 import React from "react";
 
 class Breadcrumbs extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div className="breadcrumbs">

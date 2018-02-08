@@ -1,14 +1,13 @@
 import ReactDOM from "react-dom";
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as HashRouter, Route, Switch } from "react-router-dom";
 
 import Header from "./components/Header.jsx";
 import Top from "./components/Top.jsx";
-import Nav from "./components/Nav.jsx";
-import Main from "./components/Main.jsx";
+import Index from "./components/Index.jsx";
+import Catalogue from "./components/Catalogue.jsx";
 import Footer from "./components/Footer.jsx";
 import NotFound from "./components/NotFound.jsx";
-import Breadcrumbs from "./components/Breadcrumbs.jsx";
 
 import style from "./styles/style.less";
 
@@ -20,21 +19,24 @@ var store = redux.createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <HashRouter>
       <div className="wrapper">
         <Header />
         <Top />
-        <Nav />
-        <Breadcrumbs />
-        <div className="main">
-          <Switch>
-            <Route exact path="/" component={Main} />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
+
+        <Switch>
+          <Route exact path="/" component={Index} />
+          <Route
+            exact
+            path="/catalogue/tools/penetrators"
+            component={Catalogue}
+          />
+          <Route component={NotFound} />
+        </Switch>
+
         <Footer />
       </div>
-    </Router>
+    </HashRouter>
   </Provider>,
   document.getElementById("app")
 );
