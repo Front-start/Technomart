@@ -16,3 +16,34 @@ a:visited {
   text-decoration: none;
   outline: none;
 }
+
+.breadcrumbs ul {
+  width: 940px;
+  display: flex;
+  text-transform: uppercase;
+  list-style: none;
+  li {
+    padding-left: 20px;
+    position: relative;
+    &:nth-child(1) {
+      &:before {
+        content: '=';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10px;
+        height: 10px;
+      }
+    }
+    &:nth-child(n+2) {
+      &:before {
+        content: '*';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+}

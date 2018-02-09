@@ -8,17 +8,15 @@ class Nav extends React.Component {
   render() {
     return (
       <nav>
-        <div className="nav-container">
-          <ul>
-            {this.props.menuItems.map(item => (
-              <li key={item.order}>
-                <NavLink exact to={item.link} activeClassName="nav-active">
-                  {item.name}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul>
+          {this.props.menuItems.map(item => (
+            <li key={item.order}>
+              <NavLink exact to={item.link} activeClassName="nav-active">
+                {item.name}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
       </nav>
     );
   }

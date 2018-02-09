@@ -8,7 +8,7 @@ class Catalogue extends React.Component {
     return (
       <div className="main">
         <Nav />
-        <Breadcrumbs />
+        <Breadcrumbs location={this.props.location} />
         <div className="catalogue-component">
           <div className="catalogue">
             <div className="catalogue-container">

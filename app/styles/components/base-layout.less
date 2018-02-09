@@ -1,11 +1,4 @@
 //basic tags and general rules
-[class*="-container"] {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    width: 940px;
-}
-
 *,
 *::after,
 *::before {
@@ -30,8 +23,9 @@ body {
 
 header {
     max-width: 1200px;
+    min-width: 940px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 42px;
@@ -40,8 +34,9 @@ header {
 
 .top {
     max-width: 1200px;
+    min-width: 940px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 160px;
@@ -57,11 +52,12 @@ header {
 
 nav {
     max-width: 1200px;
+    min-width: 940px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    height: 80px;
+    align-items: flex-start;
+    height: 120px;
     background-color: @lightBlue;
 }
 
@@ -76,8 +72,18 @@ nav {
 
 .main {
     max-width: 1200px;
+    min-width: 940px;
     display: flex;
     flex-direction: column;
+    background-color: white;
+}
+
+.index {
+    width: 940px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    background-color: white;
 }
 
 .catalogue-component {
@@ -104,20 +110,29 @@ nav {
     background-color: @lightBlue;
 }
 
-.footer-top {
-    max-width: 1200px;
+footer {
     display: flex;
     flex-direction: column;
+}
+
+.footer-top {
+    max-width: 1200px;
+    min-width: 940px;
+    display: flex;
     justify-content: center;
-    align-items: center;
     background-color: @blue;
 }
 
 .footer-bot {
     max-width: 1200px;
+    min-width: 940px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
     background-color: @darkBlue;
+}
+
+.footer-top-container,
+.footer-bot-container {
+    display: flex;
+    width: 940px;
 }

@@ -23,7 +23,6 @@ ReactDOM.render(
       <div className="wrapper">
         <Header />
         <Top />
-
         <Switch>
           <Route exact path="/" component={Index} />
           <Route
@@ -33,7 +32,6 @@ ReactDOM.render(
           />
           <Route component={NotFound} />
         </Switch>
-
         <Footer />
       </div>
     </HashRouter>
