@@ -395,15 +395,15 @@ footer {
   opacity: 0.5;
 }
 
-header .header-container .header-order-wrapper .header-btn-red {
+header .header-order-wrapper .header-btn-red {
   background-color: #ee3643;
 }
 
-header .header-container .header-order-wrapper .header-btn-red:hover {
+header .header-order-wrapper .header-btn-red:hover {
   background-color: #ca2c37;
 }
 
-header .header-container .header-order-wrapper .header-btn-red:active {
+header .header-order-wrapper .header-btn-red:active {
   background-color: #ba2732;
 }
 
