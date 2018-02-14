@@ -25,11 +25,7 @@ ReactDOM.render(
         <Top />
         <Switch>
           <Route exact path="/" component={Index} />
-          <Route
-            exact
-            path="/catalogue/tools/penetrators"
-            component={Catalogue}
-          />
+          <Route exact path="/catalogue/:id?/:subid?" component={Catalogue} />
           <Route component={NotFound} />
         </Switch>
         <Footer />

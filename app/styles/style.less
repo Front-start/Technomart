@@ -2,11 +2,11 @@
 @import "./components/mixins";
 @import "./components/fonts";
 @import "./components/base-layout";
-@import "./components/icons";
 @import "./components/buttons";
 @import "./components/header";
 @import "./components/top";
 @import "./components/nav";
+@import "./components/catalogue";
 /* @import 'react-datetime.css'; */
 
 a,
@@ -19,30 +19,41 @@ a:visited {
 
 .breadcrumbs ul {
   width: 940px;
+  height: 60px;
   display: flex;
   text-transform: uppercase;
   list-style: none;
+  align-items: center;
+  font-family: 'PT Sans';
+  font-size: 13px;
+  font-weight: 400;
   li {
-    padding-left: 20px;
+    align-items: center;
+    display: flex;
+    height: 100%;
     position: relative;
     &:nth-child(1) {
+      width: 15px;
       &:before {
-        content: '=';
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
-        width: 10px;
-        height: 10px;
+        .bg-img('/icons/icon-home.svg', unset);
+        width: 15px;
+        height: 100%;
       }
     }
     &:nth-child(n+2) {
+      padding-left: 38px;
       &:before {
-        content: '*';
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
-        width: 10px;
-        height: 10px;
+        .bg-img('/icons/icon-right.svg', unset);
+        width: 38px;
+        height: 100%;
       }
     }
   }

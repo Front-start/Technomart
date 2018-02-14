@@ -27,5 +27,64 @@ export let Storage = {
       bookmarks: [41, 55, 21, 19],
       basket: [6, 4, 1]
     }
-  ]
+  ],
+  catalogue: {
+    categories: [
+      {
+        id: 1,
+        name: "Инструмент",
+        subcategories: [
+          {
+            id: 1,
+            name: "Перфораторы",
+            info:
+              "Перфоратор — универсальный строительный инструмент. Предназначен для сверления и долбления отверстий в кирпиче, бетоне и камне.       Существуют электромеханические и пневматические перфораторы. Современные модели могут выполнять функции дрели, шуруповерта и отбойного молотка. В ассортиментном ряду есть выбор «трехрежимников»: в одном устройстве будут совмещены отбойный молоток и ударная дрель.",
+            fields: [
+              {
+                id: 1,
+                name: "Цена",
+                type: "digit",
+                display: "range",
+                sort: true,
+                leftmenu: true
+              },
+              {
+                id: 2,
+                name: "Тип",
+                type: "text",
+                display: "list",
+                sort: true,
+                leftmenu: false
+              },
+              {
+                id: 3,
+                name: "Функционал",
+                type: "text",
+                display: "list",
+                sort: true,
+                leftmenu: false
+              },
+              {
+                id: 4,
+                name: "Производитель",
+                type: "text",
+                display: "list",
+                sort: false,
+                leftmenu: true
+              },
+              {
+                id: 5,
+                name: "Питание",
+                type: "text",
+                display: "select",
+                sort: false,
+                leftmenu: true
+              }
+            ],
+            goods: []
+          }
+        ]
+      }
+    ]
+  }
 };

@@ -4,10 +4,9 @@ import { Storage } from "./storage.js";
 
 let initialState = Object.assign(Storage, {
   currentUser: null,
-  items: [],
   menuItems: [
     { name: "Главная", link: "/", order: 1 },
-    { name: "Каталог", link: "/catalogue/tools/penetrators", order: 3 },
+    { name: "Каталог", link: "/catalogue/1/1", order: 3 },
     { name: "Компания", link: "#", order: 2 },
     { name: "Спецпредложения", link: "#", order: 5 },
     { name: "Новости", link: "#", order: 4 },

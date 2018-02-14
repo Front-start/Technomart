@@ -3,6 +3,10 @@ import Info from "./Info.jsx";
 import Nav from "./Nav.jsx";
 import Breadcrumbs from "./Breadcrumbs.jsx";
 
+import { connect } from "react-redux";
+import actions from "./actions.jsx";
+import { Map } from "immutable";
+
 class Catalogue extends React.Component {
   render() {
     return (
@@ -11,7 +15,7 @@ class Catalogue extends React.Component {
         <Breadcrumbs location={this.props.location} />
         <div className="catalogue-component">
           <div className="catalogue">
-            <div className="catalogue-container">
+            <div className="catalogue-title">
               <h1>Каталог</h1>
             </div>
           </div>
@@ -22,4 +26,16 @@ class Catalogue extends React.Component {
   }
 }
 
-module.exports = Catalogue;
+function mapStateToProps(state) {
+  //console.log(this.props.match);
+  return {
+    bookmarks: Map.isMap(state.get("currentUser"))
+      ? state.get("currentUser").toJS().bookmarks.length
+      : 0,
+    basket: Map.isMap(state.get("currentUser"))
+      ? state.get("currentUser").toJS().basket.length
+      : 0
+  };
+}
+
+module.exports = connect(mapStateToProps, actions)(Catalogue);
