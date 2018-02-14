@@ -2,4 +2,4 @@
 
 Макет HTML Academy
 
-[technomart.surge.sh](technomart.surge.sh)
+[http://technomart.surge.sh](http://technomart.surge.sh)
