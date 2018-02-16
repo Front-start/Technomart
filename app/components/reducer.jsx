@@ -40,6 +40,23 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
       break;
     case "LOGOUT":
       return state.merge({ currentUser: null });
+    case "GET_INITIAL_INFO":
+      let cat = state
+        .getIn(["catalogue", "categories"])
+        .find(val => val.get("id") == action.catId);
+      let subCat = cat
+        .get("subcategories")
+        .find(val => val.get("id") == action.subCatId);
+      return state.set(
+        "activeCategory",
+        fromJS({
+          catName: cat.get("name"),
+          subCatName: subCat.get("name"),
+          fields: subCat.get("fields"),
+          totalNumber: null,
+          items: []
+        })
+      );
   }
   return state;
 };

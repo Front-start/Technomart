@@ -8,6 +8,23 @@ import actions from "./actions.jsx";
 import { Map } from "immutable";
 
 class Catalogue extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.sort = this.sort.bind(this);
+  }
+
+  sort(e) {
+    console.log(e.target.dataset.id);
+  }
+
+  componentWillMount() {
+    this.props.getInitialInfo(
+      this.props.match.params.id,
+      this.props.match.params.subid
+    );
+  }
+
   render() {
     return (
       <div className="main">
@@ -16,7 +33,36 @@ class Catalogue extends React.Component {
         <div className="catalogue-component">
           <div className="catalogue">
             <div className="catalogue-title">
-              <h1>Каталог</h1>
+              <h1>{this.props.activeCategory.subCatName}</h1>
+            </div>
+            <div className="catalogue-main-wrapper">
+              <div className="catalogue-filter">
+                <div className="catalogue-filter-header">Фильтр:</div>
+              </div>
+              <div className="catalogue-main">
+                <div className="catalogue-main-header">
+                  сортировка:
+                  <ul className="sort-fields">
+                    {this.props.activeCategory.fields.map(item => {
+                      if (!!item.sort) {
+                        return (
+                          <li
+                            key={item.id}
+                            data-id={item.id}
+                            onClick={this.sort}
+                          >
+                            {item.name}
+                          </li>
+                        );
+                      }
+                    })}
+                  </ul>
+                  <div className="sort-buttons">
+                    <div className="sort-asc" />
+                    <div className="sort-desc" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <Info />
@@ -27,14 +73,8 @@ class Catalogue extends React.Component {
 }
 
 function mapStateToProps(state) {
-  //console.log(this.props.match);
   return {
-    bookmarks: Map.isMap(state.get("currentUser"))
-      ? state.get("currentUser").toJS().bookmarks.length
-      : 0,
-    basket: Map.isMap(state.get("currentUser"))
-      ? state.get("currentUser").toJS().basket.length
-      : 0
+    activeCategory: state.get("activeCategory").toJS()
   };
 }
 

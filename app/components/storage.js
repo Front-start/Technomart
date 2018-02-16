@@ -28,6 +28,9 @@ export let Storage = {
       basket: [6, 4, 1]
     }
   ],
+  activeCategory: {
+    fields: []
+  },
   catalogue: {
     categories: [
       {

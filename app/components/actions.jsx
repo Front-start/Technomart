@@ -17,4 +17,12 @@ var logout = function() {
   };
 };
 
-module.exports = { importUser, login, logout };
+var getInitialInfo = function(catId, subCatId) {
+  return {
+    type: "GET_INITIAL_INFO",
+    catId,
+    subCatId
+  };
+};
+
+module.exports = { importUser, login, logout, getInitialInfo };
