@@ -53,8 +53,8 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
           catName: cat.get("name"),
           subCatName: subCat.get("name"),
           fields: subCat.get("fields"),
-          totalNumber: null,
-          items: []
+          totalNumber: subCat.get("fields").length,
+          items: subCat.get("goods")
         })
       );
   }

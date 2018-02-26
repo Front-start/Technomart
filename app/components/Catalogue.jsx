@@ -2,18 +2,15 @@ import React from "react";
 import Info from "./Info.jsx";
 import Nav from "./Nav.jsx";
 import Breadcrumbs from "./Breadcrumbs.jsx";
+import Filter from "./Filter.jsx";
+
+import ReactPaginate from "react-paginate";
 
 import { connect } from "react-redux";
 import actions from "./actions.jsx";
 import { Map } from "immutable";
 
 class Catalogue extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.sort = this.sort.bind(this);
-  }
-
   sort(e) {
     console.log(e.target.dataset.id);
   }
@@ -23,6 +20,9 @@ class Catalogue extends React.Component {
       this.props.match.params.id,
       this.props.match.params.subid
     );
+  }
+  handlePageClick(e) {
+    console.log(e.target.value);
   }
 
   render() {
@@ -38,6 +38,13 @@ class Catalogue extends React.Component {
             <div className="catalogue-main-wrapper">
               <div className="catalogue-filter">
                 <div className="catalogue-filter-header">Фильтр:</div>
+                <div className="filter-list">
+                  {this.props.activeCategory.fields.map(item => {
+                    if (!!item.leftmenu) {
+                      return <Filter key={item.id} filter={item} />;
+                    }
+                  })}
+                </div>
               </div>
               <div className="catalogue-main">
                 <div className="catalogue-main-header">
@@ -63,6 +70,19 @@ class Catalogue extends React.Component {
                   </div>
                 </div>
               </div>
+              <ReactPaginate
+                previousLabel={"previous"}
+                nextLabel={"next"}
+                breakLabel={<a href="">...</a>}
+                breakClassName={"break-me"}
+                pageCount={10}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={3}
+                onPageChange={this.handlePageClick}
+                containerClassName={"pagination"}
+                subContainerClassName={"pages pagination"}
+                activeClassName={"active"}
+              />
             </div>
           </div>
           <Info />

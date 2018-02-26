@@ -32,7 +32,8 @@ module.exports = {
                 }
               ],
               "react"
-            ]
+            ],
+            plugins: ["transform-class-properties"]
           }
         }
       },

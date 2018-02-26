@@ -19,11 +19,17 @@
 .catalogue-main-wrapper {
     width: 940px;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .catalogue-filter {
     width: 220px;
     display: flex;
+    flex-direction: column;
+    .filter-item {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
 }
 
 .catalogue-main {
@@ -91,4 +97,8 @@
             text-decoration-style: dotted;
         }
     }
+}
+
+.pagination-container {
+    width: 940px;
 }
