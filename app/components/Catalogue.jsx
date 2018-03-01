@@ -3,6 +3,7 @@ import Info from "./Info.jsx";
 import Nav from "./Nav.jsx";
 import Breadcrumbs from "./Breadcrumbs.jsx";
 import Filter from "./Filter.jsx";
+import ItemRender from "./ItemRender.jsx";
 
 import ReactPaginate from "react-paginate";
 
@@ -10,7 +11,15 @@ import { connect } from "react-redux";
 import actions from "./actions.jsx";
 import { Map } from "immutable";
 
+const xah_deep_copy_array_or_object = obj => JSON.parse(JSON.stringify(obj));
+
 class Catalogue extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handlePageClick = this.handlePageClick.bind(this);
+
+    this.state = { itemsPerPage: 9 };
+  }
   sort(e) {
     console.log(e.target.dataset.id);
   }
@@ -18,11 +27,16 @@ class Catalogue extends React.Component {
   componentWillMount() {
     this.props.getInitialInfo(
       this.props.match.params.id,
-      this.props.match.params.subid
+      this.props.match.params.subid,
+      9
     );
   }
+
   handlePageClick(e) {
-    console.log(e.target.value);
+    this.props.pageChange(
+      e.selected * this.state.itemsPerPage,
+      (e.selected + 1) * this.state.itemsPerPage
+    );
   }
 
   render() {
@@ -69,19 +83,28 @@ class Catalogue extends React.Component {
                     <div className="sort-desc" />
                   </div>
                 </div>
+                <div className="catalogue-main-items">
+                  <ItemRender
+                    items={this.props.activeCategory.itemsToDisplay}
+                  />
+                </div>
               </div>
               <ReactPaginate
                 previousLabel={"previous"}
                 nextLabel={"next"}
                 breakLabel={<a href="">...</a>}
                 breakClassName={"break-me"}
-                pageCount={10}
+                pageCount={Math.ceil(
+                  this.props.activeCategory.totalNumber /
+                    this.state.itemsPerPage
+                )}
                 marginPagesDisplayed={1}
                 pageRangeDisplayed={3}
                 onPageChange={this.handlePageClick}
                 containerClassName={"pagination"}
                 subContainerClassName={"pages pagination"}
                 activeClassName={"active"}
+                disabledClassName={"disabled"}
               />
             </div>
           </div>

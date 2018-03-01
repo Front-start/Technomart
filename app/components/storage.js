@@ -29,7 +29,9 @@ export let Storage = {
     }
   ],
   activeCategory: {
-    fields: []
+    fields: [],
+    items: [],
+    itemsToDisplay: []
   },
   catalogue: {
     categories: [
@@ -130,7 +132,7 @@ export let Storage = {
               {
                 id: 2,
                 brand: "Интерскол",
-                model: "PENETRATR 89000",
+                model: "PERFORATR 89000",
                 price: 21500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "",
@@ -140,7 +142,7 @@ export let Storage = {
               {
                 id: 3,
                 brand: "Makita",
-                model: "PENETRATR 9000",
+                model: "PERFORATR 9000",
                 price: 4500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "",
@@ -150,7 +152,7 @@ export let Storage = {
               {
                 id: 4,
                 brand: "Dewalt",
-                model: "DOUBLE PENETRATR 19000",
+                model: "DOUBLE PERFORATR 19000",
                 price: 25500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "",
@@ -220,7 +222,7 @@ export let Storage = {
               {
                 id: 11,
                 brand: "BOSCH",
-                model: "TRIPLE PENETRATR 500",
+                model: "TRIPLE PERFORATR 500",
                 price: 19500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "",

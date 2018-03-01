@@ -1,4 +1,5 @@
 import { Map } from "immutable";
+import { List } from "immutable";
 import { fromJS } from "immutable";
 import { Storage } from "./storage.js";
 
@@ -53,9 +54,17 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
           catName: cat.get("name"),
           subCatName: subCat.get("name"),
           fields: subCat.get("fields"),
-          totalNumber: subCat.get("fields").length,
-          items: subCat.get("goods")
+          totalNumber: subCat.get("goods").count(),
+          items: subCat.get("goods"),
+          itemsToDisplay: subCat.get("goods").slice(0, action.numberOfItems)
         })
+      );
+    case "PAGE_CHANGE":
+      return state.setIn(
+        ["activeCategory", "itemsToDisplay"],
+        state
+          .getIn(["activeCategory", "items"])
+          .slice(action.itemFrom, action.itemTo)
       );
   }
   return state;

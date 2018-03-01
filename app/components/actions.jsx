@@ -17,12 +17,21 @@ var logout = function() {
   };
 };
 
-var getInitialInfo = function(catId, subCatId) {
+var getInitialInfo = function(catId, subCatId, numberOfItems) {
   return {
     type: "GET_INITIAL_INFO",
     catId,
-    subCatId
+    subCatId,
+    numberOfItems
   };
 };
 
-module.exports = { importUser, login, logout, getInitialInfo };
+var pageChange = function(itemFrom, itemTo) {
+  return {
+    type: "PAGE_CHANGE",
+    itemFrom,
+    itemTo
+  };
+};
+
+module.exports = { importUser, login, logout, getInitialInfo, pageChange };
