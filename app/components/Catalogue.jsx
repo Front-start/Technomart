@@ -11,8 +11,6 @@ import { connect } from "react-redux";
 import actions from "./actions.jsx";
 import { Map } from "immutable";
 
-const xah_deep_copy_array_or_object = obj => JSON.parse(JSON.stringify(obj));
-
 class Catalogue extends React.Component {
   constructor(props) {
     super(props);
@@ -30,6 +28,7 @@ class Catalogue extends React.Component {
       this.props.match.params.subid,
       9
     );
+    this.props.pageChange(0, this.state.itemsPerPage);
   }
 
   handlePageClick(e) {
@@ -89,23 +88,25 @@ class Catalogue extends React.Component {
                   />
                 </div>
               </div>
-              <ReactPaginate
-                previousLabel={"previous"}
-                nextLabel={"next"}
-                breakLabel={<a href="">...</a>}
-                breakClassName={"break-me"}
-                pageCount={Math.ceil(
-                  this.props.activeCategory.totalNumber /
-                    this.state.itemsPerPage
-                )}
-                marginPagesDisplayed={1}
-                pageRangeDisplayed={3}
-                onPageChange={this.handlePageClick}
-                containerClassName={"pagination"}
-                subContainerClassName={"pages pagination"}
-                activeClassName={"active"}
-                disabledClassName={"disabled"}
-              />
+              <div className="pagination">
+                <ReactPaginate
+                  previousLabel={"Предыдущая"}
+                  nextLabel={"Следующая"}
+                  breakLabel={<a href="">...</a>}
+                  breakClassName={"break-me"}
+                  pageCount={Math.ceil(
+                    this.props.activeCategory.totalNumber /
+                      this.state.itemsPerPage
+                  )}
+                  marginPagesDisplayed={1}
+                  pageRangeDisplayed={3}
+                  onPageChange={this.handlePageClick}
+                  containerClassName={"pagination"}
+                  subContainerClassName={"pages pagination"}
+                  activeClassName={"active"}
+                  disabledClassName={"disabled"}
+                />
+              </div>
             </div>
           </div>
           <Info />

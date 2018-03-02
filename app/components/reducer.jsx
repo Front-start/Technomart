@@ -55,11 +55,13 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
           subCatName: subCat.get("name"),
           fields: subCat.get("fields"),
           totalNumber: subCat.get("goods").count(),
-          items: subCat.get("goods"),
-          itemsToDisplay: subCat.get("goods").slice(0, action.numberOfItems)
+          items: subCat.get("goods").sortBy(item => {
+            return item.toJS().price;
+          })
         })
       );
     case "PAGE_CHANGE":
+      console.log("123");
       return state.setIn(
         ["activeCategory", "itemsToDisplay"],
         state

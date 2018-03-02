@@ -101,8 +101,41 @@
 
 .catalogue-main-wrapper {
     width: 940px;
-    .pagination li {
-        display: block;
-        list-style: none;
+    .pagination {
+        display: flex;
+        width: 100%;
+        padding: 10px;
+        justify-content: center;
+        li {
+            list-style: none;
+            a {
+                display: block;
+                padding: 0 15px;
+                height: 38px;
+                margin-right: 10px;
+                border: 1px #e5e5e5 solid;
+                border-radius: 3px;
+                font-family: 'pt sans';
+                font-size: 13px;
+                text-transform: uppercase;
+                line-height: 38px;
+                cursor: pointer;
+                &:hover {
+                    border-color: #bdc6ca;
+                }
+                &:active {
+                    border-color: #ee3643;
+                }
+            }
+        }
+        .active a {
+            color: white;
+            background: #ee3643;
+            border: 0px;
+            cursor: default;
+        }
+        .disabled {
+            display: none;
+        }
     }
 }
