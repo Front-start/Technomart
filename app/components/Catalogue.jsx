@@ -49,8 +49,8 @@ class Catalogue extends React.Component {
               <h1>{this.props.activeCategory.subCatName}</h1>
             </div>
             <div className="catalogue-main-wrapper">
-              <div className="catalogue-filter">
-                <div className="catalogue-filter-header">Фильтр:</div>
+              <div className="catalogue-left-col">
+                <div className="catalogue-left-col-header">Фильтр:</div>
                 <div className="filter-list">
                   {this.props.activeCategory.fields.map(item => {
                     if (!!item.leftmenu) {
@@ -59,8 +59,8 @@ class Catalogue extends React.Component {
                   })}
                 </div>
               </div>
-              <div className="catalogue-main">
-                <div className="catalogue-main-header">
+              <div className="catalogue-right-col">
+                <div className="catalogue-right-col-header">
                   сортировка:
                   <ul className="sort-fields">
                     {this.props.activeCategory.fields.map(item => {
@@ -82,10 +82,14 @@ class Catalogue extends React.Component {
                     <div className="sort-desc" />
                   </div>
                 </div>
-                <div className="catalogue-main-items">
-                  <ItemRender
-                    items={this.props.activeCategory.itemsToDisplay}
-                  />
+                <div className="catalogue-right-col-items">
+                  {this.props.activeCategory.itemsToDisplay.length > -1
+                    ? this.props.activeCategory.itemsToDisplay.map(item => (
+                        <div className="catalogue-item" key={item.id}>
+                          <ItemRender item={item} />
+                        </div>
+                      ))
+                    : "Нет товаров в этой (под)категории"}
                 </div>
               </div>
               <div className="pagination">
