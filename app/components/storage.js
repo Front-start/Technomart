@@ -125,7 +125,7 @@ export let Storage = {
                 model: "BFG 3000",
                 price: 22500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Аккумуляторный",
                 functions: "",
                 type: "Аккумуляторный"
               },
@@ -135,7 +135,7 @@ export let Storage = {
                 model: "PERFORATR 89000",
                 price: 21500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Сетевой",
                 functions: "",
                 type: "Сетевой"
               },
@@ -145,7 +145,7 @@ export let Storage = {
                 model: "PERFORATR 9000",
                 price: 4500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Сетевой",
                 functions: "",
                 type: "Сетевой"
               },
@@ -155,7 +155,7 @@ export let Storage = {
                 model: "DOUBLE PERFORATR 19000",
                 price: 25500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Аккумуляторный",
                 functions: "",
                 type: "Аккумуляторный"
               },
@@ -165,7 +165,7 @@ export let Storage = {
                 model: "hochu verstat landingi",
                 price: 25800,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Аккумуляторный",
                 functions: "",
                 type: "Аккумуляторный"
               },
@@ -175,7 +175,7 @@ export let Storage = {
                 model: "react",
                 price: 72500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Сетевой",
                 functions: "",
                 type: "Сетевой"
               },
@@ -185,7 +185,7 @@ export let Storage = {
                 model: "sosed sverhu",
                 price: 25500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Аккумуляторный",
                 functions: "",
                 type: "Аккумуляторный"
               },
@@ -195,7 +195,7 @@ export let Storage = {
                 model: "volodin",
                 price: 21500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Сетевой",
                 functions: "",
                 type: "Сетевой"
               },
@@ -205,7 +205,7 @@ export let Storage = {
                 model: "brrrr",
                 price: 12500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Аккумуляторный",
                 functions: "",
                 type: "Аккумуляторный"
               },
@@ -215,7 +215,7 @@ export let Storage = {
                 model: "3jn24jn234",
                 price: 15500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Аккумуляторный",
                 functions: "",
                 type: "Аккумуляторный"
               },
@@ -225,7 +225,7 @@ export let Storage = {
                 model: "TRIPLE PERFORATR 500",
                 price: 19500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Сетевой",
                 functions: "",
                 type: "Сетевой"
               },
@@ -235,7 +235,7 @@ export let Storage = {
                 model: "dolbit normalno",
                 price: 18500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Сетевой",
                 functions: "",
                 type: "Сетевой"
               },
@@ -245,7 +245,7 @@ export let Storage = {
                 model: "dfjngj45",
                 price: 17500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Сетевой",
                 functions: "",
                 type: "Сетевой"
               },
@@ -255,7 +255,7 @@ export let Storage = {
                 model: "interskol ultra",
                 price: 14500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Аккумуляторный",
                 functions: "",
                 type: "Аккумуляторный"
               },
@@ -265,7 +265,7 @@ export let Storage = {
                 model: "gref",
                 price: 28500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Аккумуляторный",
                 functions: "",
                 type: "Аккумуляторный"
               },
@@ -275,7 +275,7 @@ export let Storage = {
                 model: "32i4mkjlm",
                 price: 27500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Сетевой",
                 functions: "",
                 type: "Сетевой"
               },
@@ -285,7 +285,7 @@ export let Storage = {
                 model: "ia ustal",
                 price: 26500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Аккумуляторный",
                 functions: "",
                 type: "Аккумуляторный"
               },
@@ -295,7 +295,7 @@ export let Storage = {
                 model: "wuerh1",
                 price: 25300,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Сетевой",
                 functions: "",
                 type: "Сетевой"
               },
@@ -306,7 +306,7 @@ export let Storage = {
                 model: "leswr",
                 price: 25900,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Аккумуляторный",
                 functions: "",
                 type: "Аккумуляторный"
               },
@@ -316,7 +316,7 @@ export let Storage = {
                 model: "x1",
                 price: 21500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Сетевой",
                 functions: "",
                 type: "Сетевой"
               },
@@ -326,7 +326,7 @@ export let Storage = {
                 model: "XXX_6512",
                 price: 26100,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Аккумуляторный",
                 functions: "",
                 type: "Аккумуляторный"
               },
@@ -336,7 +336,7 @@ export let Storage = {
                 model: "dokumentacia k immutable.js - govno",
                 price: 25400,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Сетевой",
                 functions: "",
                 type: "Сетевой"
               },
@@ -347,7 +347,7 @@ export let Storage = {
                 model: "2007 is 11 yrs from now",
                 price: 22500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Аккумуляторный",
                 functions: "",
                 type: "Аккумуляторный"
               },
@@ -357,7 +357,7 @@ export let Storage = {
                 model: "Pr0 drill",
                 price: 27500,
                 image: "/images/goods/perf/asd.jpg",
-                power: "",
+                power: "Сетевой",
                 functions: "",
                 type: "Сетевой"
               }

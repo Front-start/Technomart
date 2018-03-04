@@ -29,6 +29,7 @@ class Catalogue extends React.Component {
       9
     );
     this.props.pageChange(0, this.state.itemsPerPage);
+    this.props.buildFilterList();
   }
 
   handlePageClick(e) {
@@ -52,11 +53,7 @@ class Catalogue extends React.Component {
               <div className="catalogue-left-col">
                 <div className="catalogue-left-col-header">Фильтр:</div>
                 <div className="filter-list">
-                  {this.props.activeCategory.fields.map(item => {
-                    if (!!item.leftmenu) {
-                      return <Filter key={item.id} filter={item} />;
-                    }
-                  })}
+                  <Filter />
                 </div>
               </div>
               <div className="catalogue-right-col">

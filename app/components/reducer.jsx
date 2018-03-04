@@ -1,5 +1,6 @@
 import { Map } from "immutable";
 import { List } from "immutable";
+import { Set } from "immutable";
 import { fromJS } from "immutable";
 import { Storage } from "./storage.js";
 
@@ -61,13 +62,46 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
         })
       );
     case "PAGE_CHANGE":
-      console.log("123");
       return state.setIn(
         ["activeCategory", "itemsToDisplay"],
         state
           .getIn(["activeCategory", "items"])
           .slice(action.itemFrom, action.itemTo)
       );
+    case "BUILD_FILTER_LIST":
+      let filterArr = [];
+      state
+        .getIn(["activeCategory", "fields"])
+        .filter(item => item.get("leftmenu") == true)
+        .map(item => {
+          if (item.get("type") == "digit") {
+            filterArr.push({
+              name: item.get("name"),
+              display: item.get("display"),
+              data: {
+                min: state
+                  .getIn(["activeCategory", "items"])
+                  .minBy(item1 => item1.get(item.get("key")))
+                  .get(item.get("key")),
+                max: state
+                  .getIn(["activeCategory", "items"])
+                  .maxBy(item1 => item1.get(item.get("key")))
+                  .get(item.get("key"))
+              }
+            });
+          } else {
+            filterArr.push({
+              name: item.get("name"),
+              display: item.get("display"),
+              data: Set().union(
+                state
+                  .getIn(["activeCategory", "items"])
+                  .map(item1 => item1.get(item.get("key")))
+              )
+            });
+          }
+        });
+      return state.setIn(["activeCategory", "filterSet"], fromJS(filterArr));
   }
   return state;
 };

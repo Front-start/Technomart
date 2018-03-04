@@ -34,4 +34,17 @@ var pageChange = function(itemFrom, itemTo) {
   };
 };
 
-module.exports = { importUser, login, logout, getInitialInfo, pageChange };
+var buildFilterList = function() {
+  return {
+    type: "BUILD_FILTER_LIST"
+  };
+};
+
+module.exports = {
+  importUser,
+  login,
+  logout,
+  getInitialInfo,
+  pageChange,
+  buildFilterList
+};
