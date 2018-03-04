@@ -13,7 +13,7 @@ let initialState = Object.assign(Storage, {
     { name: "Спецпредложения", link: "#", order: 5 },
     { name: "Новости", link: "#", order: 4 },
     { name: "Доставка", link: "#", order: 6 },
-    { name: "Контакты", link: "#", order: 7 }
+    { name: "Контакты", link: "#", order:  }
   ]
 });
 
@@ -86,7 +86,7 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
                 max: state
                   .getIn(["activeCategory", "items"])
                   .maxBy(item1 => item1.get(item.get("key")))
-                  .get(item.get("key"))
+                  .get(item.get("key")) 
               }
             });
           } else {
