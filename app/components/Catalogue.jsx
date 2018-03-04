@@ -51,7 +51,7 @@ class Catalogue extends React.Component {
             </div>
             <div className="catalogue-main-wrapper">
               <div className="catalogue-left-col">
-                <div className="catalogue-left-col-header">Фильтр1:</div>
+                <div className="catalogue-left-col-header">Фильтр:</div>
                 <div className="filter-list">
                   <Filter />
                 </div>
