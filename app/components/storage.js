@@ -84,6 +84,7 @@ export let Storage = {
                 name: "Питание",
                 type: "text",
                 display: "select",
+                default: "Аккумуляторный",
                 sort: false,
                 leftmenu: true
               },

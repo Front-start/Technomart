@@ -9,7 +9,6 @@ import ReactPaginate from "react-paginate";
 
 import { connect } from "react-redux";
 import actions from "./actions.jsx";
-import { Map } from "immutable";
 
 class Catalogue extends React.Component {
   constructor(props) {
@@ -27,7 +26,6 @@ class Catalogue extends React.Component {
       this.props.match.params.id,
       this.props.match.params.subid
     );
-
     this.props.pageChange(0, this.state.itemsPerPage);
     this.props.buildFilterList();
   }
@@ -40,7 +38,6 @@ class Catalogue extends React.Component {
   }
 
   render() {
-    console.log(this.props.activeCategory);
     if (this.props.activeCategory.id > 0) {
       return (
         <div className="main">

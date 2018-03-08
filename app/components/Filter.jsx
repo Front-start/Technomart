@@ -3,6 +3,24 @@ import { connect } from "react-redux";
 import actions from "./actions.jsx";
 
 class Filter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.checkboxToggle = this.checkboxToggle.bind(this);
+    this.selectToggle = this.selectToggle.bind(this);
+  }
+
+  checkboxToggle(e) {
+    let id = e.target.dataset.id;
+    let text = e.target.textContent;
+  }
+
+  selectToggle(e) {
+    let id = e.target.dataset.id;
+    let text = e.target.textContent;
+  }
+
+  componentWillMount() {}
+
   render() {
     return this.props.filterSet.map((filter, id) => {
       switch (filter.display) {
@@ -15,10 +33,30 @@ class Filter extends React.Component {
           );
 
         case "list":
+          filter.data.values.sort(function(a, b) {
+            return a.localeCompare(b);
+          });
           return (
             <div className="filter-item" key={id}>
               <span className="filter-header">{filter.name}:</span>
-              List: {filter.data.map(item => item)}
+              {filter.data.values.map((item, n) => {
+                return (
+                  <span
+                    className={
+                      this.props.filterSet[id].data.currentValues.indexOf(
+                        item
+                      ) >= 0
+                        ? "checked"
+                        : ""
+                    }
+                    data-id={id}
+                    onClick={this.checkboxToggle}
+                    key={n}
+                  >
+                    {item}
+                  </span>
+                );
+              })}
             </div>
           );
 
@@ -26,13 +64,20 @@ class Filter extends React.Component {
           return (
             <div className="filter-item" key={id}>
               <span className="filter-header">{filter.name}:</span>
-              <select>
-                {filter.data.map((item, n) => (
-                  <option key={n} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
+              {filter.data.values.map((item, n) => (
+                <span
+                  className={
+                    this.props.filterSet[id].data.current == { item }
+                      ? "active"
+                      : ""
+                  }
+                  onClick={this.selectToggle}
+                  data-id={id}
+                  key={n}
+                >
+                  {item}
+                </span>
+              ))}
             </div>
           );
       }

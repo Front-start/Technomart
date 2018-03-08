@@ -68,6 +68,10 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
               name: item.get("name"),
               display: item.get("display"),
               data: {
+                currentMin: state
+                  .getIn(["activeCategory", "goods"])
+                  .minBy(item1 => item1.get(item.get("key")))
+                  .get(item.get("key")),
                 min: state
                   .getIn(["activeCategory", "goods"])
                   .minBy(item1 => item1.get(item.get("key")))
@@ -75,18 +79,38 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
                 max: state
                   .getIn(["activeCategory", "goods"])
                   .maxBy(item1 => item1.get(item.get("key")))
+                  .get(item.get("key")),
+                currentMax: state
+                  .getIn(["activeCategory", "goods"])
+                  .maxBy(item1 => item1.get(item.get("key")))
                   .get(item.get("key"))
               }
             });
-          } else {
+          } else if (item.get("type") == "select") {
             filterArr.push({
               name: item.get("name"),
               display: item.get("display"),
-              data: Set().union(
-                state
-                  .getIn(["activeCategory", "goods"])
-                  .map(item1 => item1.get(item.get("key")))
-              )
+              data: {
+                values: Set().union(
+                  state
+                    .getIn(["activeCategory", "goods"])
+                    .map(item1 => item1.get(item.get("key")))
+                ),
+                currentValue: item.get("default")
+              }
+            });
+          } else if (item.get("type") == "text") {
+            filterArr.push({
+              name: item.get("name"),
+              display: item.get("display"),
+              data: {
+                values: Set().union(
+                  state
+                    .getIn(["activeCategory", "goods"])
+                    .map(item1 => item1.get(item.get("key")))
+                ),
+                currentValues: Set()
+              }
             });
           }
         });
