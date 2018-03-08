@@ -43,7 +43,7 @@ class Filter extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    filterSet: state.getIn(["activeCategory", "filterSet"]).toJS()
+    filterSet: state.get("filterSet").toJS()
   };
 }
 

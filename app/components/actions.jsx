@@ -17,12 +17,11 @@ var logout = function() {
   };
 };
 
-var getInitialInfo = function(catId, subCatId, numberOfItems) {
+var getCat = function(catId, subCatId) {
   return {
-    type: "GET_INITIAL_INFO",
+    type: "GET_CAT",
     catId,
-    subCatId,
-    numberOfItems
+    subCatId
   };
 };
 
@@ -44,7 +43,7 @@ module.exports = {
   importUser,
   login,
   logout,
-  getInitialInfo,
+  getCat,
   pageChange,
   buildFilterList
 };

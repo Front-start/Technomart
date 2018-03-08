@@ -42,30 +42,19 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
       break;
     case "LOGOUT":
       return state.merge({ currentUser: null });
-    case "GET_INITIAL_INFO":
+    case "GET_CAT":
       let cat = state
         .getIn(["catalogue", "categories"])
         .find(val => val.get("id") == action.catId);
       let subCat = cat
         .get("subcategories")
         .find(val => val.get("id") == action.subCatId);
-      return state.set(
-        "activeCategory",
-        fromJS({
-          catName: cat.get("name"),
-          subCatName: subCat.get("name"),
-          fields: subCat.get("fields"),
-          totalNumber: subCat.get("goods").count(),
-          items: subCat.get("goods").sortBy(item => {
-            return item.toJS().price;
-          })
-        })
-      );
+      return state.set("activeCategory", subCat);
     case "PAGE_CHANGE":
       return state.setIn(
-        ["activeCategory", "itemsToDisplay"],
+        ["activeCategory", "goodsToDisplay"],
         state
-          .getIn(["activeCategory", "items"])
+          .getIn(["activeCategory", "goods"])
           .slice(action.itemFrom, action.itemTo)
       );
     case "BUILD_FILTER_LIST":
@@ -80,11 +69,11 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
               display: item.get("display"),
               data: {
                 min: state
-                  .getIn(["activeCategory", "items"])
+                  .getIn(["activeCategory", "goods"])
                   .minBy(item1 => item1.get(item.get("key")))
                   .get(item.get("key")),
                 max: state
-                  .getIn(["activeCategory", "items"])
+                  .getIn(["activeCategory", "goods"])
                   .maxBy(item1 => item1.get(item.get("key")))
                   .get(item.get("key"))
               }
@@ -95,13 +84,13 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
               display: item.get("display"),
               data: Set().union(
                 state
-                  .getIn(["activeCategory", "items"])
+                  .getIn(["activeCategory", "goods"])
                   .map(item1 => item1.get(item.get("key")))
               )
             });
           }
         });
-      return state.setIn(["activeCategory", "filterSet"], fromJS(filterArr));
+      return state.set("filterSet", fromJS(filterArr));
   }
   return state;
 };
