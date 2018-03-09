@@ -50,17 +50,21 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
         .get("subcategories")
         .find(val => val.get("id") == action.subCatId);
       return state.set("activeCategory", subCat);
-    case "PAGE_CHANGE":
-      return state.setIn(
-        ["activeCategory", "goodsToDisplay"],
-        state
-          .getIn(["activeCategory", "goods"])
-          .filter(tovar =>
+    case "PAGE_CHANGE": //Копирует нужные объекты отфильтрованых товаров в массив для вывода
+      return state.withMutations(map =>
+        map
+          .setIn(["activeCategory", "page"], [action.itemFrom, action.itemTo])
+          .setIn(
+            ["activeCategory", "goodsToDisplay"],
             state
-              .getIn(["activeCategory", "filteredGoods"])
-              .has(tovar.get("id"))
+              .getIn(["activeCategory", "goods"])
+              .filter(tovar =>
+                state
+                  .getIn(["activeCategory", "filteredGoods"])
+                  .has(tovar.get("id"))
+              )
+              .slice(action.itemFrom, action.itemTo)
           )
-          .slice(action.itemFrom, action.itemTo)
       );
     case "BUILD_FILTER_LIST":
       //Создается массив объектов с данными для отображения фильтров. Пока варианта 3.
@@ -75,6 +79,7 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
             let filterObj = {
               name: filter.get("name"),
               display: filter.get("display"),
+              key: filter.get("key"),
               data: {
                 currentMin: state //Текущее нижнее значение
                   .getIn(["activeCategory", "goods"])
@@ -113,6 +118,7 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
             let filterObj = {
               name: filter.get("name"),
               display: filter.get("display"),
+              key: filter.get("key"),
               data: {
                 values: Set().union(
                   //Все уникальные значения соответствующих полей
@@ -196,7 +202,7 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
         }
         return state;
       }
-    case "FILTER_ITEMS":
+    case "GATHER_FILTERED_ITEMS": //Собирает с фильтров отфильтрованые товары в один массив
       let filterCount = state.get("filterSet").size - 1;
       let filteredSet = Set(
         state
@@ -217,8 +223,50 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
           filteredSet = filteredSet.intersect(set);
         }
       }
-
       return state.setIn(["activeCategory", "filteredGoods"], filteredSet);
+    case "APPLY_FILTER":
+      let filterToApply = state.get("filterSet").get(action.filterId);
+      let newSet;
+      if (filterToApply.get("display") == "range") {
+        newSet = Set(
+          state
+            .getIn(["activeCategory", "goods"])
+            .filter(
+              tovar =>
+                tovar.get(filterToApply.get("key")) >=
+                  filterToApply.getIn(["data", "currentMin"]) &&
+                tovar.get(filterToApply.get("key")) <=
+                  filterToApply.getIn(["data", "currentMax"])
+            )
+            .map(tovar => tovar.get("id"))
+        );
+      } else if (filterToApply.get("display") == "list") {
+        newSet = Set(
+          state
+            .getIn(["activeCategory", "goods"])
+            .filter(tovar =>
+              filterToApply
+                .getIn(["data", "currentValue"])
+                .has(tovar.get(filterToApply.get("key")))
+            )
+            .map(tovar => tovar.get("id"))
+        );
+      } else if (filterToApply.get("display") == "select") {
+        newSet = Set(
+          state
+            .getIn(["activeCategory", "goods"])
+            .filter(
+              tovar =>
+                tovar.get(filterToApply.get("key")) ==
+                filterToApply.getIn(["data", "currentValue"])
+            )
+            .map(tovar => tovar.get("id"))
+        );
+      }
+      return state.setIn(
+        ["filterSet", action.filterId, "data", "filteredItems"],
+        newSet
+      );
   }
   return state;
 };

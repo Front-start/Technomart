@@ -47,9 +47,14 @@ var updateFilterList = function(id, data1, data2) {
     data2
   };
 };
-var filterItems = function(filterId) {
+var gatherFilteredItems = function() {
   return {
-    type: "FILTER_ITEMS",
+    type: "GATHER_FILTERED_ITEMS"
+  };
+};
+var applyFilter = function(filterId) {
+  return {
+    type: "APPLY_FILTER",
     filterId
   };
 };
@@ -62,5 +67,6 @@ module.exports = {
   pageChange,
   buildFilterList,
   updateFilterList,
-  filterItems
+  gatherFilteredItems,
+  applyFilter
 };

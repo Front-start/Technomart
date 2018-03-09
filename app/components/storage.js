@@ -1,4 +1,5 @@
 export let Storage = {
+  page: null,
   users: [
     {
       id: 1,

@@ -15,7 +15,7 @@ class Catalogue extends React.Component {
     super(props);
     this.handlePageClick = this.handlePageClick.bind(this);
 
-    this.state = { itemsPerPage: 9 };
+    this.state = { selectedPage: 0, itemsPerPage: 9 };
   }
   sort(e) {
     console.log(e.target.dataset.id);
@@ -27,11 +27,12 @@ class Catalogue extends React.Component {
       this.props.match.params.subid
     );
     this.props.buildFilterList();
-    this.props.filterItems();
+    this.props.gatherFilteredItems();
     this.props.pageChange(0, this.state.itemsPerPage);
   }
 
   handlePageClick(e) {
+    this.setState({ selectedPage: e.selected });
     this.props.pageChange(
       e.selected * this.state.itemsPerPage,
       (e.selected + 1) * this.state.itemsPerPage
@@ -53,7 +54,10 @@ class Catalogue extends React.Component {
                 <div className="catalogue-left-col">
                   <div className="catalogue-left-col-header">Фильтр:</div>
                   <div className="filter-list">
-                    <Filter />
+                    <Filter
+                      selectedPage={this.state.selectedPage}
+                      itemsPerPage={this.state.itemsPerPage}
+                    />
                   </div>
                 </div>
                 <div className="catalogue-right-col">

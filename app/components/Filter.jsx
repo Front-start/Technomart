@@ -11,13 +11,23 @@ class Filter extends React.Component {
 
   checkboxToggle(e) {
     this.props.updateFilterList(e.target.dataset.id,e.target.textContent);
+    this.props.applyFilter(e.target.dataset.id);
+    this.props.gatherFilteredItems();
+    this.props.pageChange(
+      this.props.selectedPage * this.props.itemsPerPage,
+      (this.props.selectedPage + 1) * this.props.itemsPerPage
+    );
   }
 
   selectToggle(e) {
     this.props.updateFilterList(e.target.dataset.id,e.target.textContent);
+    this.props.applyFilter(e.target.dataset.id);
+    this.props.gatherFilteredItems();
+    this.props.pageChange(
+      this.props.selectedPage * this.props.itemsPerPage,
+      (this.props.selectedPage + 1) * this.props.itemsPerPage
+    );
   }
-
-  componentWillMount() {}
 
   render() {
     return this.props.filterSet.map((filter, id) => {
