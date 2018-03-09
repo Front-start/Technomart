@@ -39,11 +39,28 @@ var buildFilterList = function() {
   };
 };
 
+var updateFilterList = function(id, data1, data2) {
+  return {
+    type: "UPDATE_FILTER_LIST",
+    id,
+    data1,
+    data2
+  };
+};
+var filterItems = function(filterId) {
+  return {
+    type: "FILTER_ITEMS",
+    filterId
+  };
+};
+
 module.exports = {
   importUser,
   login,
   logout,
   getCat,
   pageChange,
-  buildFilterList
+  buildFilterList,
+  updateFilterList,
+  filterItems
 };

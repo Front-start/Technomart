@@ -19,9 +19,9 @@ let initialState = Object.assign(Storage, {
 
 var reducer = function(state = new Map(fromJS(initialState)), action) {
   switch (action.type) {
-    case "ADD_USER":
+    case "ADD_USER": //Добавляет объект пользователя в массив пользователей
       return state.update("users", value => value.push(Map(action.user)));
-    case "LOGIN_ATTEMPT":
+    case "LOGIN_ATTEMPT": //Ищет пользователя в массиве пользователей, проверяет пароль, меняет currentUser
       let id = state
         .get("users")
         .findIndex(user => user.get("login") == action.login);
@@ -40,9 +40,9 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
         alert("Пользователь не найден");
       }
       break;
-    case "LOGOUT":
+    case "LOGOUT": //Очищает currentUser
       return state.merge({ currentUser: null });
-    case "GET_CAT":
+    case "GET_CAT": //Меняет объект activeCategory на данные из категории, соответствующей значениям из match
       let cat = state
         .getIn(["catalogue", "categories"])
         .find(val => val.get("id") == action.catId);
@@ -55,66 +55,170 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
         ["activeCategory", "goodsToDisplay"],
         state
           .getIn(["activeCategory", "goods"])
+          .filter(tovar =>
+            state
+              .getIn(["activeCategory", "filteredGoods"])
+              .has(tovar.get("id"))
+          )
           .slice(action.itemFrom, action.itemTo)
       );
     case "BUILD_FILTER_LIST":
+      //Создается массив объектов с данными для отображения фильтров. Пока варианта 3.
+      //На этом этапе можно было бы и не фильтровать, но пусть пока будет.
       let filterArr = [];
       state
         .getIn(["activeCategory", "fields"])
-        .filter(item => item.get("leftmenu") == true)
-        .map(item => {
-          if (item.get("type") == "digit") {
-            filterArr.push({
-              name: item.get("name"),
-              display: item.get("display"),
+        .filter(filter => filter.get("leftmenu") == true)
+        .map(filter => {
+          if (filter.get("type") == "digit") {
+            //Измеряется цифрами
+            let filterObj = {
+              name: filter.get("name"),
+              display: filter.get("display"),
               data: {
-                currentMin: state
+                currentMin: state //Текущее нижнее значение
                   .getIn(["activeCategory", "goods"])
-                  .minBy(item1 => item1.get(item.get("key")))
-                  .get(item.get("key")),
-                min: state
+                  .minBy(tovar => tovar.get(filter.get("key")))
+                  .get(filter.get("key")),
+                min: state //Минимальное нижнее значение
                   .getIn(["activeCategory", "goods"])
-                  .minBy(item1 => item1.get(item.get("key")))
-                  .get(item.get("key")),
-                max: state
+                  .minBy(tovar => tovar.get(filter.get("key")))
+                  .get(filter.get("key")),
+                max: state //Максимальное верхнее значение
                   .getIn(["activeCategory", "goods"])
-                  .maxBy(item1 => item1.get(item.get("key")))
-                  .get(item.get("key")),
-                currentMax: state
+                  .maxBy(tovar => tovar.get(filter.get("key")))
+                  .get(filter.get("key")),
+                currentMax: state //Текущее верхнее значение
                   .getIn(["activeCategory", "goods"])
-                  .maxBy(item1 => item1.get(item.get("key")))
-                  .get(item.get("key"))
+                  .maxBy(tovar => tovar.get(filter.get("key")))
+                  .get(filter.get("key"))
               }
-            });
-          } else if (item.get("type") == "select") {
-            filterArr.push({
-              name: item.get("name"),
-              display: item.get("display"),
+            };
+            if (filter.get("display") == "range") {
+              //Если фильтр - диапазон, то отфильтруем...
+              filterObj.data.filteredItems = Set(
+                state
+                  .getIn(["activeCategory", "goods"])
+                  .filter(
+                    tovar =>
+                      tovar.get(filter.get("key")) >= filterObj.data.min &&
+                      tovar.get(filter.get("key")) <= filterObj.data.max
+                  )
+                  .map(tovar => tovar.get("id"))
+              );
+            }
+            filterArr.push(filterObj); //И запишем сет из id нужных товаров
+          } else if (filter.get("type") == "text") {
+            //Если значение - текст, соберем все уникальные значения в сет
+            let filterObj = {
+              name: filter.get("name"),
+              display: filter.get("display"),
               data: {
                 values: Set().union(
+                  //Все уникальные значения соответствующих полей
                   state
                     .getIn(["activeCategory", "goods"])
-                    .map(item1 => item1.get(item.get("key")))
+                    .sort((a, b) =>
+                      a
+                        .get(filter.get("key"))
+                        .localeCompare(b.get(filter.get("key")))
+                    ) //Сортировка для удобства
+                    .map(tovar => tovar.get(filter.get("key")))
                 ),
-                currentValue: item.get("default")
-              }
-            });
-          } else if (item.get("type") == "text") {
-            filterArr.push({
-              name: item.get("name"),
-              display: item.get("display"),
-              data: {
-                values: Set().union(
+                currentValue: Set().union(
+                  //Пусть пока будет то же самое
                   state
                     .getIn(["activeCategory", "goods"])
-                    .map(item1 => item1.get(item.get("key")))
-                ),
-                currentValues: Set()
+                    .sort((a, b) =>
+                      a
+                        .get(filter.get("key"))
+                        .localeCompare(b.get(filter.get("key")))
+                    )
+                    .map(tovar => tovar.get(filter.get("key")))
+                )
               }
-            });
+            };
+            if (filter.get("display") == "list") {
+              //Если список, то значение поля товара должно быть в списке
+              filterObj.data.filteredItems = Set(
+                state
+                  .getIn(["activeCategory", "goods"])
+                  .filter(tovar =>
+                    filterObj.data.currentValue.has(
+                      tovar.get(filter.get("key"))
+                    )
+                  )
+                  .map(tovar => tovar.get("id"))
+              );
+            } else if (filter.get("display") == "select") {
+              //Если список, то значение поля товара должно быть в списке
+              filterObj.data.currentValue = filter.get("default");
+              filterObj.data.filteredItems = Set(
+                state
+                  .getIn(["activeCategory", "goods"])
+                  .filter(
+                    tovar =>
+                      tovar.get(filter.get("key")) ==
+                      filterObj.data.currentValue
+                  )
+                  .map(tovar => tovar.get("id"))
+              );
+            }
+            filterArr.push(filterObj);
           }
         });
       return state.set("filterSet", fromJS(filterArr));
+    case "UPDATE_FILTER_LIST": //Пользователь настраивает фильтры - меняются их объекты
+      let filter = state.get("filterSet").get(action.id);
+      if (filter.get("display") == "list") {
+        //Если тип фильтра - список, то проверим, есть ли бновое значение в списке и добави/удалим
+        if (filter.getIn(["data", "currentValue"]).has(action.data1)) {
+          return state.updateIn(
+            ["filterSet", action.id, "data", "currentValue"],
+            set => set.delete(action.data1)
+          );
+        } else
+          return state.updateIn(
+            ["filterSet", action.id, "data", "currentValue"],
+            set => set.add(action.data1)
+          );
+      }
+      if (filter.get("display") == "select") {
+        //Если тип фильтра - селект, то запишем новое значение (если оно новое)
+        if (
+          state.getIn(["filterSet", action.id, "data", "currentValue"]) ==
+          action.data1
+        ) {
+          return state.updateIn(
+            ["filterSet", action.id, "data", "currentValue"],
+            x => action.data1
+          );
+        }
+        return state;
+      }
+    case "FILTER_ITEMS":
+      let filterCount = state.get("filterSet").size - 1;
+      let filteredSet = Set(
+        state
+          .get("filterSet")
+          .get("0")
+          .getIn(["data", "filteredItems"])
+      );
+
+      if (filterCount > 0) {
+        for (let i = 1; i <= filterCount; i++) {
+          let set = Set(
+            state
+              .get("filterSet")
+              .get(i)
+              .getIn(["data", "filteredItems"])
+          );
+
+          filteredSet = filteredSet.intersect(set);
+        }
+      }
+
+      return state.setIn(["activeCategory", "filteredGoods"], filteredSet);
   }
   return state;
 };

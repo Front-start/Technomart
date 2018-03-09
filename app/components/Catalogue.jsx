@@ -26,8 +26,9 @@ class Catalogue extends React.Component {
       this.props.match.params.id,
       this.props.match.params.subid
     );
-    this.props.pageChange(0, this.state.itemsPerPage);
     this.props.buildFilterList();
+    this.props.filterItems();
+    this.props.pageChange(0, this.state.itemsPerPage);
   }
 
   handlePageClick(e) {
@@ -95,7 +96,7 @@ class Catalogue extends React.Component {
                     breakLabel={<a href="">...</a>}
                     breakClassName={"break-me"}
                     pageCount={Math.ceil(
-                      this.props.activeCategory.goods.length /
+                      this.props.activeCategory.filteredGoods.length /
                         this.state.itemsPerPage
                     )}
                     marginPagesDisplayed={1}

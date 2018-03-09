@@ -10,13 +10,11 @@ class Filter extends React.Component {
   }
 
   checkboxToggle(e) {
-    let id = e.target.dataset.id;
-    let text = e.target.textContent;
+    this.props.updateFilterList(e.target.dataset.id,e.target.textContent);
   }
 
   selectToggle(e) {
-    let id = e.target.dataset.id;
-    let text = e.target.textContent;
+    this.props.updateFilterList(e.target.dataset.id,e.target.textContent);
   }
 
   componentWillMount() {}
@@ -26,28 +24,25 @@ class Filter extends React.Component {
       switch (filter.display) {
         case "range":
           return (
-            <div className="filter-item" key={id}>
+            <div className={'filter-item'+' type-'+filter.display} key={id}>
               <span className="filter-header">{filter.name}:</span>
               from: {filter.data.min}, to: {filter.data.max}
             </div>
           );
 
         case "list":
-          filter.data.values.sort(function(a, b) {
-            return a.localeCompare(b);
-          });
           return (
-            <div className="filter-item" key={id}>
+            <div className={'filter-instance'+' type-'+filter.display} key={id}>
               <span className="filter-header">{filter.name}:</span>
               {filter.data.values.map((item, n) => {
                 return (
                   <span
                     className={
-                      this.props.filterSet[id].data.currentValues.indexOf(
+                      this.props.filterSet[id].data.currentValue.indexOf(
                         item
-                      ) >= 0
-                        ? "checked"
-                        : ""
+                      ) > -1
+                        ? "filter-item checked"
+                        : "filter-item"
                     }
                     data-id={id}
                     onClick={this.checkboxToggle}
@@ -62,7 +57,7 @@ class Filter extends React.Component {
 
         case "select":
           return (
-            <div className="filter-item" key={id}>
+            <div className={'filter-item'+' type-'+filter.display} key={id}>
               <span className="filter-header">{filter.name}:</span>
               {filter.data.values.map((item, n) => (
                 <span
