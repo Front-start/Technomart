@@ -14,8 +14,9 @@ class Catalogue extends React.Component {
   constructor(props) {
     super(props);
     this.handlePageClick = this.handlePageClick.bind(this);
+    this.setPagination = this.setPagination.bind(this);
 
-    this.state = { selectedPage: 0, itemsPerPage: 9 };
+    this.state = { selectedPage: 0, itemsPerPage: 9, pageCount: 0 };
   }
   sort(e) {
     console.log(e.target.dataset.id);
@@ -28,6 +29,7 @@ class Catalogue extends React.Component {
     );
     this.props.buildFilterList();
     this.props.gatherFilteredItems();
+    this.setPagination();
     this.props.pageChange(0, this.state.itemsPerPage);
   }
 
@@ -37,6 +39,39 @@ class Catalogue extends React.Component {
       e.selected * this.state.itemsPerPage,
       (e.selected + 1) * this.state.itemsPerPage
     );
+  }
+
+  setPagination() {
+    let pageCount = Math.ceil(
+      //Количество страниц, необходимое для отображения товаров
+      this.props.activeCategory.filteredGoods.length / this.state.itemsPerPage
+    );
+    if (pageCount == 0) {
+      //Если нет товаров, то чтобы пагинация не пропала, пусть будет 1 страница
+      pageCount = 1;
+    }
+    if (pageCount != this.state.pageCount) {
+      //Если общее количество страниц изменилось, обновим
+      this.setState({
+        pageCount: pageCount
+      });
+
+      if (this.state.selectedPage + 1 > pageCount) {
+        //Если пользователь при этом был на последней странице, переместим на предпоследнюю
+        this.setState({
+          selectedPage: this.state.selectedPage - 1
+        });
+        this.props.pageChange(
+          //И выведем товары
+          this.state.selectedPage - 1 * this.state.itemsPerPage,
+          this.state.selectedPage * this.state.itemsPerPage
+        );
+      }
+    }
+  }
+
+  componentDidUpdate() {
+    this.setPagination();
   }
 
   render() {
@@ -99,10 +134,8 @@ class Catalogue extends React.Component {
                     nextLabel={"Следующая"}
                     breakLabel={<a href="">...</a>}
                     breakClassName={"break-me"}
-                    pageCount={Math.ceil(
-                      this.props.activeCategory.filteredGoods.length /
-                        this.state.itemsPerPage
-                    )}
+                    forcePage={this.state.selectedPage}
+                    pageCount={this.state.pageCount}
                     marginPagesDisplayed={1}
                     pageRangeDisplayed={3}
                     onPageChange={this.handlePageClick}

@@ -173,11 +173,12 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
             filterArr.push(filterObj);
           }
         });
+
       return state.set("filterSet", fromJS(filterArr));
     case "UPDATE_FILTER_LIST": //Пользователь настраивает фильтры - меняются их объекты
       let filter = state.get("filterSet").get(action.id);
       if (filter.get("display") == "list") {
-        //Если тип фильтра - список, то проверим, есть ли бновое значение в списке и добави/удалим
+        //Если тип фильтра - список, то проверим, есть ли новое значение в списке и добави/удалим
         if (filter.getIn(["data", "currentValue"]).has(action.data1)) {
           return state.updateIn(
             ["filterSet", action.id, "data", "currentValue"],
