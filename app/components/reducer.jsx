@@ -225,7 +225,7 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
         }
       }
       return state.setIn(["activeCategory", "filteredGoods"], filteredSet);
-    case "APPLY_FILTER":
+    case "APPLY_FILTER": //В теории, можно проверять остальные фильтры, только когда фильтр ослабевает...
       let filterToApply = state.get("filterSet").get(action.filterId);
       let newSet;
       if (filterToApply.get("display") == "range") {
