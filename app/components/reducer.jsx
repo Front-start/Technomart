@@ -203,6 +203,13 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
         }
         return state;
       }
+      if (filter.get("display") == "range") {
+        //Если тип фильтра - селект, то запишем новое значение (если оно новое)
+        return state.mergeIn(["filterSet", action.id, "data"], {
+          currentMin: action.data1,
+          currentMax: action.data2
+        });
+      }
     case "GATHER_FILTERED_ITEMS": //Собирает с фильтров отфильтрованые товары в один массив
       let filterCount = state.get("filterSet").size - 1;
       let filteredSet = Set(

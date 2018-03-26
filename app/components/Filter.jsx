@@ -16,16 +16,14 @@ class Filter extends React.Component {
     this.selectRangeSlider = this.selectRangeSlider.bind(this);
   }
 
-  rangeUpdate(e) {
-    console.log(e);
-    /*
-    this.props.updateFilterList(e.target.dataset.id, e.target.textContent);
-    this.props.applyFilter(e.target.dataset.id);
+  rangeUpdate(value, id) {
+    this.props.updateFilterList(id, value[0], value[1]);
+    this.props.applyFilter(id);
     this.props.gatherFilteredItems();
     this.props.pageChange(
       this.props.selectedPage * this.props.itemsPerPage,
       (this.props.selectedPage + 1) * this.props.itemsPerPage
-    );*/
+    );
   }
 
   selectRangeSlider(e) {
@@ -61,18 +59,15 @@ class Filter extends React.Component {
             <div
               className={"filter-instance" + " type-" + filter.display}
               key={id}
-              onMouseEnter={this.selectRangeSlider}
             >
               <span className="filter-header">{filter.name}:</span>
               from: {filter.data.min}, to: {filter.data.max}
-              <div
-                className="range-slider"
-                onMouseEnter={this.selectRangeSlider}
-              >
+              <div className="range-slider">
                 <Range
-                  data-id={id}
-                  defaultValue={[22, 77]}
-                  onAfterChange={this.rangeUpdate}
+                  min={0}
+                  max={100000}
+                  defaultValue={[220, 77000]}
+                  onAfterChange={value => this.rangeUpdate(value, id)}
                   allowCross={false}
                 />
               </div>
