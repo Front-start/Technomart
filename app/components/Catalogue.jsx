@@ -26,9 +26,9 @@ class Catalogue extends React.Component {
     this.props.getCat(
       this.props.match.params.id,
       this.props.match.params.subid
-    );
-    this.props.buildFilterList();
-    this.props.gatherFilteredItems();
+    ); //Приготовить данные в хранилище
+    this.props.buildFilterList(); //Приготовить фильтры в хранилище
+    this.props.gatherFilteredItems(); //
     this.setPagination();
     this.props.pageChange(0, this.state.itemsPerPage);
   }

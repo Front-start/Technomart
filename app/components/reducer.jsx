@@ -46,14 +46,14 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
       let cat = state
         .getIn(["catalogue", "categories"])
         .find(val => val.get("id") == action.catId);
-      let subCat = cat
-        .get("subcategories")
-        .find(val => val.get("id") == action.subCatId);
+      let subCat = !!action.subCatId // Проверим, есть ли подкатегория
+        ? cat.get("subcategories").find(val => val.get("id") == action.subCatId)
+        : cat;
       return state.set("activeCategory", subCat);
     case "PAGE_CHANGE": //Копирует нужные объекты отфильтрованых товаров в массив для вывода
       return state.withMutations(map =>
         map
-          .setIn(["activeCategory", "page"], [action.itemFrom, action.itemTo])
+          .setIn(["activeCategory", "page"], [action.itemFrom, action.itemTo]) //Зачем?..
           .setIn(
             ["activeCategory", "goodsToDisplay"],
             state
@@ -193,7 +193,7 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
       if (filter.get("display") == "select") {
         //Если тип фильтра - селект, то запишем новое значение (если оно новое)
         if (
-          state.getIn(["filterSet", action.id, "data", "currentValue"]) ==
+          state.getIn(["filterSet", action.id, "data", "currentValue"]) !=
           action.data1
         ) {
           return state.updateIn(

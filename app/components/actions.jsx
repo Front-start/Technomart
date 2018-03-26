@@ -47,11 +47,13 @@ var updateFilterList = function(id, data1, data2) {
     data2
   };
 };
+
 var gatherFilteredItems = function() {
   return {
     type: "GATHER_FILTERED_ITEMS"
   };
 };
+
 var applyFilter = function(filterId) {
   return {
     type: "APPLY_FILTER",

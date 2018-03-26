@@ -10,7 +10,7 @@ class Filter extends React.Component {
   }
 
   checkboxToggle(e) {
-    this.props.updateFilterList(e.target.dataset.id,e.target.textContent);
+    this.props.updateFilterList(e.target.dataset.id, e.target.textContent);
     this.props.applyFilter(e.target.dataset.id);
     this.props.gatherFilteredItems();
     this.props.pageChange(
@@ -20,7 +20,7 @@ class Filter extends React.Component {
   }
 
   selectToggle(e) {
-    this.props.updateFilterList(e.target.dataset.id,e.target.textContent);
+    this.props.updateFilterList(e.target.dataset.id, e.target.textContent);
     this.props.applyFilter(e.target.dataset.id);
     this.props.gatherFilteredItems();
     this.props.pageChange(
@@ -34,7 +34,7 @@ class Filter extends React.Component {
       switch (filter.display) {
         case "range":
           return (
-            <div className={'filter-item'+' type-'+filter.display} key={id}>
+            <div className={"filter-item" + " type-" + filter.display} key={id}>
               <span className="filter-header">{filter.name}:</span>
               from: {filter.data.min}, to: {filter.data.max}
             </div>
@@ -42,15 +42,17 @@ class Filter extends React.Component {
 
         case "list":
           return (
-            <div className={'filter-instance'+' type-'+filter.display} key={id}>
+            <div
+              className={"filter-instance" + " type-" + filter.display}
+              key={id}
+            >
               <span className="filter-header">{filter.name}:</span>
               {filter.data.values.map((item, n) => {
                 return (
                   <span
                     className={
-                      this.props.filterSet[id].data.currentValue.indexOf(
-                        item
-                      ) > -1
+                      this.props.filterSet[id].data.currentValue.indexOf(item) >
+                      -1
                         ? "filter-item checked"
                         : "filter-item"
                     }
@@ -67,15 +69,11 @@ class Filter extends React.Component {
 
         case "select":
           return (
-            <div className={'filter-item'+' type-'+filter.display} key={id}>
+            <div className={"filter-item" + " type-" + filter.display} key={id}>
               <span className="filter-header">{filter.name}:</span>
               {filter.data.values.map((item, n) => (
                 <span
-                  className={
-                    this.props.filterSet[id].data.current == { item }
-                      ? "active"
-                      : ""
-                  }
+                  className={filter.data.currentValue == item ? "active" : ""}
                   onClick={this.selectToggle}
                   data-id={id}
                   key={n}
