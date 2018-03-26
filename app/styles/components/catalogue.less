@@ -1,4 +1,4 @@
-//adding icon fonts, icon sprite sheets
+@import "rc-slider-index.css";
 .catalogue-title {
     min-width: 940px;
     height: 90px;
@@ -140,6 +140,18 @@
         }
     }
     .filter-list {
+        .filter-header {
+            display: block;
+            margin-bottom: 15px;
+        }
+        .filter-instance {
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .filter-instance:nth-child(n+2) {
+            border-top: 1px solid #e5e5e5;
+            padding-top: 15px;
+        }
         .filter-instance.type-list .filter-item {
             display: block;
             position: relative;
@@ -151,6 +163,22 @@
                 left: 0;
             }
             &.checked {
+                &:before {
+                    content: '+';
+                }
+            }
+        }
+        .filter-instance.type-select .filter-item {
+            display: block;
+            position: relative;
+            padding-left: 20px;
+            &:before {
+                content: '-';
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            &.active {
                 &:before {
                     content: '+';
                 }

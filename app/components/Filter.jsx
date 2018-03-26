@@ -2,11 +2,35 @@ import React from "react";
 import { connect } from "react-redux";
 import actions from "./actions.jsx";
 
+import Slider from "rc-slider";
+import Tooltip from "rc-tooltip";
+
+const Range = Slider.createSliderWithTooltip(Slider.Range);
+
 class Filter extends React.Component {
   constructor(props) {
     super(props);
     this.checkboxToggle = this.checkboxToggle.bind(this);
     this.selectToggle = this.selectToggle.bind(this);
+    this.rangeUpdate = this.rangeUpdate.bind(this);
+    this.selectRangeSlider = this.selectRangeSlider.bind(this);
+  }
+
+  rangeUpdate(e) {
+    console.log(e);
+    /*
+    this.props.updateFilterList(e.target.dataset.id, e.target.textContent);
+    this.props.applyFilter(e.target.dataset.id);
+    this.props.gatherFilteredItems();
+    this.props.pageChange(
+      this.props.selectedPage * this.props.itemsPerPage,
+      (this.props.selectedPage + 1) * this.props.itemsPerPage
+    );*/
+  }
+
+  selectRangeSlider(e) {
+    console.log(e.target);
+    this.setState({ sliderId: e.target.dataset.id });
   }
 
   checkboxToggle(e) {
@@ -34,9 +58,24 @@ class Filter extends React.Component {
       switch (filter.display) {
         case "range":
           return (
-            <div className={"filter-item" + " type-" + filter.display} key={id}>
+            <div
+              className={"filter-instance" + " type-" + filter.display}
+              key={id}
+              onMouseEnter={this.selectRangeSlider}
+            >
               <span className="filter-header">{filter.name}:</span>
               from: {filter.data.min}, to: {filter.data.max}
+              <div
+                className="range-slider"
+                onMouseEnter={this.selectRangeSlider}
+              >
+                <Range
+                  data-id={id}
+                  defaultValue={[22, 77]}
+                  onAfterChange={this.rangeUpdate}
+                  allowCross={false}
+                />
+              </div>
             </div>
           );
 
@@ -69,11 +108,18 @@ class Filter extends React.Component {
 
         case "select":
           return (
-            <div className={"filter-item" + " type-" + filter.display} key={id}>
+            <div
+              className={"filter-instance" + " type-" + filter.display}
+              key={id}
+            >
               <span className="filter-header">{filter.name}:</span>
               {filter.data.values.map((item, n) => (
                 <span
-                  className={filter.data.currentValue == item ? "active" : ""}
+                  className={
+                    filter.data.currentValue == item
+                      ? "filter-item active"
+                      : "filter-item"
+                  }
                   onClick={this.selectToggle}
                   data-id={id}
                   key={n}
