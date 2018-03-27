@@ -3,9 +3,25 @@ import { connect } from "react-redux";
 import actions from "./actions.jsx";
 
 import Slider from "rc-slider";
-import Tooltip from "rc-tooltip";
-
 const Range = Slider.createSliderWithTooltip(Slider.Range);
+
+//import Range from "rc-slider/lib/Range";
+//Если загружать только range и не использовать toolip, пропадает стиль правого ползунка
+
+const handleStyle = {
+  backgroundColor: "#ababab",
+  height: "20px",
+  width: "20px",
+  border: "9px solid #fff",
+  borderRadius: "10px",
+  marginLeft: "-10px",
+  marginTop: "-9px",
+  boxShadow: "0px 2px 2px 0px rgba(0,1,1,0.14)"
+};
+const trackStyle = { backgroundColor: "#00ca74", height: "2px" };
+const railStyle = { backgroundColor: "#d7dcde", height: "2px" };
+const dotStyle = {};
+const activeDotStyle = {};
 
 class Filter extends React.Component {
   constructor(props) {
@@ -13,7 +29,10 @@ class Filter extends React.Component {
     this.checkboxToggle = this.checkboxToggle.bind(this);
     this.selectToggle = this.selectToggle.bind(this);
     this.rangeUpdate = this.rangeUpdate.bind(this);
+    this.rangeUpdateFields = this.rangeUpdateFields.bind(this);
     this.selectRangeSlider = this.selectRangeSlider.bind(this);
+
+    this.state = {};
   }
 
   rangeUpdate(value, id) {
@@ -24,6 +43,12 @@ class Filter extends React.Component {
       this.props.selectedPage * this.props.itemsPerPage,
       (this.props.selectedPage + 1) * this.props.itemsPerPage
     );
+  }
+
+  rangeUpdateFields(values, id) {
+    this.setState({
+      ["filter" + id]: values
+    });
   }
 
   selectRangeSlider(e) {
@@ -61,15 +86,34 @@ class Filter extends React.Component {
               key={id}
             >
               <span className="filter-header">{filter.name}:</span>
-              from: {filter.data.min}, to: {filter.data.max}
               <div className="range-slider">
                 <Range
-                  min={0}
-                  max={100000}
-                  defaultValue={[220, 77000]}
+                  style={{ alignSelf: "center" }}
+                  min={filter.data.min}
+                  max={filter.data.max}
+                  defaultValue={[filter.data.min, filter.data.max]}
                   onAfterChange={value => this.rangeUpdate(value, id)}
+                  onChange={value => this.rangeUpdateFields(value, id)}
                   allowCross={false}
+                  handleStyle={[handleStyle]}
+                  trackStyle={[trackStyle]}
+                  railStyle={railStyle}
+                  dotStyle={dotStyle}
+                  activeDotStyle={activeDotStyle}
                 />
+              </div>
+              <div className="range-slider-minmax">
+                <span className="range-slider-min">
+                  {this.state["filter" + id]
+                    ? this.state["filter" + id][0]
+                    : filter.data.min}
+                </span>
+                {"—"}
+                <span className="range-slider-max">
+                  {this.state["filter" + id]
+                    ? this.state["filter" + id][1]
+                    : filter.data.max}
+                </span>
               </div>
             </div>
           );
