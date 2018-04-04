@@ -26,10 +26,6 @@
     width: 220px;
     display: flex;
     flex-direction: column;
-    .filter-instance {
-        font-weight: bold;
-        text-transform: uppercase;
-    }
 }
 
 .catalogue-right-col {
@@ -72,7 +68,7 @@
             border-left: 6px solid transparent;
             border-right: 6px solid transparent;
             border-bottom: 11px solid #c6c2bd;
-            .sort-active {
+            &.active {
                 border-bottom-color: @red;
             }
         }
@@ -82,8 +78,8 @@
             border-left: 6px solid transparent;
             border-right: 6px solid transparent;
             border-top: 11px solid #c6c2bd;
-            .sort-active {
-                border-bottom-color: @red;
+            &.active {
+                border-top-color: @red;
             }
         }
     }
@@ -96,6 +92,10 @@
             margin: 0 30px;
             text-decoration: underline;
             text-decoration-style: dotted;
+            &.active {
+                color: @red;
+                text-decoration: none;
+            }
         }
     }
 }
@@ -140,51 +140,72 @@
         }
     }
     .filter-list {
-        .filter-header {
-            display: block;
-            margin-bottom: 15px;
-            padding-left: 10px;
-            font-family: 'pt sans';
-            font-size: 17px;
-            font-weight: 600;
-        }
         .filter-instance {
             overflow: hidden;
             margin-bottom: 15px;
+            font-family: 'pt sans';
+            text-transform: uppercase;
+            .filter-header {
+                display: block;
+                margin-bottom: 15px;
+                padding-left: 10px;
+                font-size: 17px;
+                font-weight: 600;
+            }
+            .filter-item {
+                font-size: 15px;
+                display: block;
+                position: relative;
+                line-height: 25px;
+                cursor: pointer;
+                padding-left: 45px;
+                margin-top: 15px;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 10px;
+                    opacity: 0.75;
+                }
+                &:hover {
+                    &:before {
+                        opacity: 1;
+                    }
+                }
+                &.disabled {
+                    opacity: .4 !important;
+                    &::before {
+                        opacity: .75 !important;
+                    }
+                }
+            }
         }
         .filter-instance:nth-child(n+2) {
             border-top: 1px solid #e5e5e5;
             padding-top: 15px;
         }
         .filter-instance.type-list .filter-item {
-            display: block;
-            position: relative;
-            padding-left: 20px;
             &:before {
-                content: '-';
-                position: absolute;
-                top: 0;
-                left: 0;
+                .bg-img('/icons/icon-check-off.svg');
+                width: 23px;
+                height: 23px;
             }
             &.checked {
                 &:before {
-                    content: '+';
+                    .bg-img('/icons/icon-check-on.svg');
+                    width: 27px;
                 }
             }
         }
         .filter-instance.type-select .filter-item {
-            display: block;
-            position: relative;
-            padding-left: 20px;
             &:before {
-                content: '-';
-                position: absolute;
-                top: 0;
-                left: 0;
+                .bg-img('/icons/icon-circle.svg');
+                width: 25px;
+                height: 25px;
             }
             &.active {
                 &:before {
-                    content: '+';
+                    .bg-img('/icons/icon-circle-dot.svg');
                 }
             }
         }

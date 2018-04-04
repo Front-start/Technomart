@@ -36,7 +36,7 @@ class Filter extends React.Component {
   }
 
   rangeUpdate(value, id) {
-    this.props.updateFilterList(id, value[0], value[1]);
+    this.props.updateFilter(id, value[0], value[1]);
     this.props.applyFilter(id);
     this.props.gatherFilteredItems();
     this.props.pageChange(
@@ -57,7 +57,7 @@ class Filter extends React.Component {
   }
 
   checkboxToggle(e) {
-    this.props.updateFilterList(e.target.dataset.id, e.target.textContent);
+    this.props.updateFilter(e.target.dataset.id, e.target.textContent);
     this.props.applyFilter(e.target.dataset.id);
     this.props.gatherFilteredItems();
     this.props.pageChange(
@@ -67,7 +67,7 @@ class Filter extends React.Component {
   }
 
   selectToggle(e) {
-    this.props.updateFilterList(e.target.dataset.id, e.target.textContent);
+    this.props.updateFilter(e.target.dataset.id, e.target.textContent);
     this.props.applyFilter(e.target.dataset.id);
     this.props.gatherFilteredItems();
     this.props.pageChange(

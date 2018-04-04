@@ -15,11 +15,32 @@ class Catalogue extends React.Component {
     super(props);
     this.handlePageClick = this.handlePageClick.bind(this);
     this.setPagination = this.setPagination.bind(this);
+    this.sort = this.sort.bind(this);
 
-    this.state = { selectedPage: 0, itemsPerPage: 9, pageCount: 0 };
+    this.state = {
+      selectedPage: 0,
+      itemsPerPage: 9,
+      pageCount: 0,
+      sortingOrderAsc: true,
+      allSet: false
+    };
   }
+
   sort(e) {
-    console.log(e.target.dataset.id);
+    if (this.props.activeCategory.activeSortField.id == e.target.dataset.id) {
+      this.props.sort(null, !this.state.sortingOrderAsc);
+      this.setState({
+        sortingOrderAsc: !this.state.sortingOrderAsc,
+        selectedPage: 0
+      });
+    } else {
+      this.props.sort(e.target.dataset.id, true);
+      this.setState({
+        sortingOrderAsc: true,
+        selectedPage: 0
+      });
+    }
+    this.props.pageChange(0, this.state.itemsPerPage);
   }
 
   componentWillMount() {
@@ -31,6 +52,20 @@ class Catalogue extends React.Component {
     this.props.gatherFilteredItems(); //
     this.setPagination();
     this.props.pageChange(0, this.state.itemsPerPage);
+  }
+  componentDidMount() {
+    let timer = setInterval(() => {
+      if (
+        this.props &&
+        this.props.activeCategory.id &&
+        this.props.activeCategory.activeSortField
+      ) {
+        this.setState({
+          allSet: true
+        });
+        clearInterval(timer);
+      }
+    }, 50);
   }
 
   handlePageClick(e) {
@@ -44,7 +79,7 @@ class Catalogue extends React.Component {
   setPagination() {
     let pageCount = Math.ceil(
       //Количество страниц, необходимое для отображения товаров
-      this.props.activeCategory.filteredGoods.length / this.state.itemsPerPage
+      this.props.activeCategory.goodsToDisplay.length / this.state.itemsPerPage
     );
     if (pageCount == 0) {
       //Если нет товаров, то чтобы пагинация не пропала, пусть будет 1 страница
@@ -75,7 +110,7 @@ class Catalogue extends React.Component {
   }
 
   render() {
-    if (this.props.activeCategory.id > 0) {
+    if (this.state.allSet) {
       return (
         <div className="main">
           <Nav />
@@ -103,6 +138,12 @@ class Catalogue extends React.Component {
                         if (!!item.sort) {
                           return (
                             <li
+                              className={
+                                item.id ==
+                                this.props.activeCategory.activeSortField.id
+                                  ? "active"
+                                  : ""
+                              }
                               key={item.id}
                               data-id={item.id}
                               onClick={this.sort}
@@ -114,17 +155,31 @@ class Catalogue extends React.Component {
                       })}
                     </ul>
                     <div className="sort-buttons">
-                      <div className="sort-asc" />
-                      <div className="sort-desc" />
+                      <div
+                        className={
+                          this.state.sortingOrderAsc
+                            ? "sort-asc active"
+                            : "sort-asc"
+                        }
+                      />
+                      <div
+                        className={
+                          !this.state.sortingOrderAsc
+                            ? "sort-desc active"
+                            : "sort-desc"
+                        }
+                      />
                     </div>
                   </div>
                   <div className="catalogue-right-col-items">
                     {this.props.activeCategory.goodsToDisplay.length > -1
-                      ? this.props.activeCategory.goodsToDisplay.map(item => (
-                          <div className="catalogue-item" key={item.id}>
-                            <ItemRender item={item} />
-                          </div>
-                        ))
+                      ? this.props.activeCategory.goodsToDisplayOnPage.map(
+                          item => (
+                            <div className="catalogue-item" key={item.id}>
+                              <ItemRender item={item} />
+                            </div>
+                          )
+                        )
                       : "Нет товаров в этой (под)категории"}
                   </div>
                 </div>
@@ -151,7 +206,15 @@ class Catalogue extends React.Component {
           </div>
         </div>
       );
-    } else return <p>Данные не получены...</p>;
+    } else
+      return (
+        <p>
+          Данные не получены... И если не будет лень, я сделаю какой-нибудь
+          компонент, который будет запускать таймер и выводить сообщение, если
+          категория так и не загрузится. Можно объединить его с компонентом не
+          найденной страницы, например. Может быть, еще какие-то ошибки.
+        </p>
+      );
   }
 }
 

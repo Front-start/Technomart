@@ -49,23 +49,25 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
       let subCat = !!action.subCatId // Проверим, есть ли подкатегория
         ? cat.get("subcategories").find(val => val.get("id") == action.subCatId)
         : cat;
-      return state.set("activeCategory", subCat);
-    case "PAGE_CHANGE": //Копирует нужные объекты отфильтрованых товаров в массив для вывода
-      return state.withMutations(map =>
-        map
-          .setIn(["activeCategory", "page"], [action.itemFrom, action.itemTo]) //Зачем?..
-          .setIn(
-            ["activeCategory", "goodsToDisplay"],
-            state
-              .getIn(["activeCategory", "goods"])
-              .filter(tovar =>
-                state
-                  .getIn(["activeCategory", "filteredGoods"])
-                  .has(tovar.get("id"))
-              )
-              .slice(action.itemFrom, action.itemTo)
-          )
+      let firstSortField = subCat
+        .get("fields")
+        .find(filter => filter.get("sort") == true);
+      return state
+        .set("activeCategory", subCat)
+        .updateIn(["activeCategory", "goods"], goods =>
+          goods.sortBy(item => item.get(firstSortField.get("key")))
+        )
+        .update("activeCategory", ac =>
+          ac.set("activeSortField", firstSortField)
+        );
+    case "PAGE_CHANGE": //Копирует нужные объекты отфильтрованых товаров в массив для вывода И СОРТИРУЕТ
+      return state.setIn(
+        ["activeCategory", "goodsToDisplayOnPage"],
+        state
+          .getIn(["activeCategory", "goodsToDisplay"])
+          .slice(action.itemFrom, action.itemTo)
       );
+
     case "BUILD_FILTER_LIST":
       //Создается массив объектов с данными для отображения фильтров. Пока варианта 3.
       //На этом этапе можно было бы и не фильтровать, но пусть пока будет.
@@ -77,6 +79,7 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
           if (filter.get("type") == "digit") {
             //Измеряется цифрами
             let filterObj = {
+              key: filter.get("id"),
               name: filter.get("name"),
               display: filter.get("display"),
               key: filter.get("key"),
@@ -116,6 +119,7 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
           } else if (filter.get("type") == "text") {
             //Если значение - текст, соберем все уникальные значения в сет
             let filterObj = {
+              key: filter.get("id"),
               name: filter.get("name"),
               display: filter.get("display"),
               key: filter.get("key"),
@@ -175,7 +179,7 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
         });
 
       return state.set("filterSet", fromJS(filterArr));
-    case "UPDATE_FILTER_LIST": //Пользователь настраивает фильтры - меняются их объекты
+    case "UPDATE_FILTER": //Пользователь настраивает фильтры - меняются их объекты
       let filter = state.get("filterSet").get(action.id);
       if (filter.get("display") == "list") {
         //Если тип фильтра - список, то проверим, есть ли новое значение в списке и добави/удалим
@@ -231,7 +235,13 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
           filteredSet = filteredSet.intersect(set);
         }
       }
-      return state.setIn(["activeCategory", "filteredGoods"], filteredSet);
+
+      return state.setIn(
+        ["activeCategory", "goodsToDisplay"],
+        state
+          .getIn(["activeCategory", "goods"])
+          .filter(tovar => filteredSet.has(tovar.get("id")))
+      );
     case "APPLY_FILTER": //В теории, можно проверять остальные фильтры, только когда фильтр ослабевает...
       let filterToApply = state.get("filterSet").get(action.filterId);
       let newSet;
@@ -275,6 +285,28 @@ var reducer = function(state = new Map(fromJS(initialState)), action) {
         ["filterSet", action.filterId, "data", "filteredItems"],
         newSet
       );
+    case "SORT":
+      if (!action.filterId) {
+        return state
+          .updateIn(["activeCategory", "goodsToDisplay"], goods =>
+            goods.reverse()
+          )
+          .updateIn(["activeCategory", "goods"], goods => goods.reverse());
+      } else {
+        let filterToSort = state
+          .getIn(["activeCategory", "fields"])
+          .find(item => item.get("id") == action.filterId);
+        return state
+          .updateIn(["activeCategory", "goods"], goods =>
+            goods.sortBy(item => item.get(filterToSort.get("key")))
+          )
+          .updateIn(["activeCategory", "goodsToDisplay"], goods =>
+            goods.sortBy(item => item.get(filterToSort.get("key")))
+          )
+          .update("activeCategory", ac =>
+            ac.set("activeSortField", filterToSort)
+          );
+      }
   }
   return state;
 };

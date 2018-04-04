@@ -39,9 +39,9 @@ var buildFilterList = function() {
   };
 };
 
-var updateFilterList = function(id, data1, data2) {
+var updateFilter = function(id, data1, data2) {
   return {
-    type: "UPDATE_FILTER_LIST",
+    type: "UPDATE_FILTER",
     id,
     data1,
     data2
@@ -61,6 +61,14 @@ var applyFilter = function(filterId) {
   };
 };
 
+var sort = function(filterId, orderAsc) {
+  return {
+    type: "SORT",
+    filterId,
+    orderAsc
+  };
+};
+
 module.exports = {
   importUser,
   login,
@@ -68,7 +76,8 @@ module.exports = {
   getCat,
   pageChange,
   buildFilterList,
-  updateFilterList,
+  updateFilter,
   gatherFilteredItems,
-  applyFilter
+  applyFilter,
+  sort
 };

@@ -30,7 +30,11 @@ export let Storage = {
     }
   ],
   filterSet: [],
-  activeCategory: { filteredGoods: {}, goodsToDisplay: {} },
+  activeCategory: {
+    goodsToDisplay: {},
+    goodsToDisplayOnPage: {},
+    activeSortField: null
+  },
   catalogue: {
     categories: [
       {
@@ -62,23 +66,24 @@ export let Storage = {
                 sort: true,
                 leftmenu: false
               },
+
               {
                 id: 3,
-                key: "functions",
-                name: "Функционал",
-                type: "text",
-                display: "list",
-                sort: true,
-                leftmenu: false
-              },
-              {
-                id: 4,
                 key: "brand",
                 name: "Производитель",
                 type: "text",
                 display: "list",
                 sort: false,
                 leftmenu: true
+              },
+              {
+                id: 4,
+                key: "functions",
+                name: "Функционал",
+                type: "text",
+                display: "list",
+                sort: true,
+                leftmenu: false
               },
               {
                 id: 5,
@@ -126,7 +131,7 @@ export let Storage = {
                 price: 22500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Аккумуляторный",
-                functions: "",
+                functions: "Сверлит",
                 type: "Аккумуляторный"
               },
               {
@@ -136,7 +141,7 @@ export let Storage = {
                 price: 21500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Сетевой",
-                functions: "",
+                functions: "Долбит",
                 type: "Сетевой"
               },
               {
@@ -146,7 +151,7 @@ export let Storage = {
                 price: 4500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Сетевой",
-                functions: "",
+                functions: "Сверлит",
                 type: "Сетевой"
               },
               {
@@ -156,7 +161,7 @@ export let Storage = {
                 price: 15500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Аккумуляторный",
-                functions: "",
+                functions: "Долбит",
                 type: "Аккумуляторный"
               },
               {
@@ -166,7 +171,7 @@ export let Storage = {
                 price: 55800,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Аккумуляторный",
-                functions: "",
+                functions: "Сверлит",
                 type: "Аккумуляторный"
               },
               {
@@ -176,7 +181,7 @@ export let Storage = {
                 price: 72500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Сетевой",
-                functions: "",
+                functions: "Долбит",
                 type: "Сетевой"
               },
               {
@@ -186,7 +191,7 @@ export let Storage = {
                 price: 65500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Аккумуляторный",
-                functions: "",
+                functions: "Сверлит",
                 type: "Аккумуляторный"
               },
               {
@@ -196,7 +201,7 @@ export let Storage = {
                 price: 31500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Сетевой",
-                functions: "",
+                functions: "Сверлит",
                 type: "Сетевой"
               },
               {
@@ -206,7 +211,7 @@ export let Storage = {
                 price: 52500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Аккумуляторный",
-                functions: "",
+                functions: "Сверлит",
                 type: "Аккумуляторный"
               },
               {
@@ -216,7 +221,7 @@ export let Storage = {
                 price: 55500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Аккумуляторный",
-                functions: "",
+                functions: "Долбит",
                 type: "Аккумуляторный"
               },
               {
@@ -226,7 +231,7 @@ export let Storage = {
                 price: 69500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Сетевой",
-                functions: "",
+                functions: "Долбит",
                 type: "Сетевой"
               },
               {
@@ -236,7 +241,7 @@ export let Storage = {
                 price: 48500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Сетевой",
-                functions: "",
+                functions: "Долбит",
                 type: "Сетевой"
               },
               {
@@ -246,7 +251,7 @@ export let Storage = {
                 price: 47500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Сетевой",
-                functions: "",
+                functions: "Сверлит",
                 type: "Сетевой"
               },
               {
@@ -256,7 +261,7 @@ export let Storage = {
                 price: 14500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Аккумуляторный",
-                functions: "",
+                functions: "Сверлит",
                 type: "Аккумуляторный"
               },
               {
@@ -266,7 +271,7 @@ export let Storage = {
                 price: 28500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Аккумуляторный",
-                functions: "",
+                functions: "Долбит",
                 type: "Аккумуляторный"
               },
               {
@@ -276,7 +281,7 @@ export let Storage = {
                 price: 27500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Сетевой",
-                functions: "",
+                functions: "Долбит",
                 type: "Сетевой"
               },
               {
@@ -286,7 +291,7 @@ export let Storage = {
                 price: 36500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Аккумуляторный",
-                functions: "",
+                functions: "Сверлит",
                 type: "Аккумуляторный"
               },
               {
@@ -296,7 +301,7 @@ export let Storage = {
                 price: 25300,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Сетевой",
-                functions: "",
+                functions: "Долбит",
                 type: "Сетевой"
               },
 
@@ -307,7 +312,7 @@ export let Storage = {
                 price: 45900,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Аккумуляторный",
-                functions: "",
+                functions: "Сверлит",
                 type: "Аккумуляторный"
               },
               {
@@ -317,7 +322,7 @@ export let Storage = {
                 price: 51500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Сетевой",
-                functions: "",
+                functions: "Долбит",
                 type: "Сетевой"
               },
               {
@@ -327,7 +332,7 @@ export let Storage = {
                 price: 26100,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Аккумуляторный",
-                functions: "",
+                functions: "Сверлит",
                 type: "Аккумуляторный"
               },
               {
@@ -337,7 +342,7 @@ export let Storage = {
                 price: 35400,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Сетевой",
-                functions: "",
+                functions: "Долбит",
                 type: "Сетевой"
               },
 
@@ -348,7 +353,7 @@ export let Storage = {
                 price: 22500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Аккумуляторный",
-                functions: "",
+                functions: "Долбит",
                 type: "Аккумуляторный"
               },
               {
@@ -358,7 +363,7 @@ export let Storage = {
                 price: 67500,
                 image: "/images/goods/perf/asd.jpg",
                 power: "Сетевой",
-                functions: "",
+                functions: "Долбит",
                 type: "Сетевой"
               }
             ]
@@ -368,3 +373,8 @@ export let Storage = {
     ]
   }
 };
+
+// activeCategory > goods - массив объектов всех товаров категории
+// filterSet > filter[arr] > filteredItems - id товаров, отфильтрованых фильтром
+// activeCategory > goodsToDisplay - товары, для отображения
+// activeCategory > goodsToDisplayOnPage - товары, для отображения на странице
