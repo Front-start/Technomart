@@ -118,7 +118,7 @@ class Catalogue extends React.Component {
           <div className="catalogue-component">
             <div className="catalogue">
               <div className="catalogue-title">
-                <h1>{this.props.activeCategory.subCatName}</h1>
+                <h1>{this.props.activeCategory.name}</h1>
               </div>
               <div className="catalogue-main-wrapper">
                 <div className="catalogue-left-col">
