@@ -4,9 +4,32 @@ class ItemRender extends React.Component {
   render() {
     return (
       <div>
-        <p>цена {this.props.item.price}</p>
-        <p>функционал {this.props.item.functions}</p>
-        <p>тип {this.props.item.type}</p>
+        <div className="top-1">
+          <img src={"/images/goods" + this.props.item.image} />
+        </div>
+        <div className="top-2">
+          <a>купить</a>
+          <a>отложить</a>
+        </div>
+        <div className="bot">
+          <span className="itemBrand">Перфоратор {this.props.item.brand}</span>
+          <span className="itemModel">{this.props.item.model}</span>
+
+          {this.props.item.discount ? (
+            <div className="itemDiscountPrice-wrapper">
+              <span className="itemFullPrice">
+                {this.props.item.price + " Р."}
+              </span>
+              <span className="itemDiscountPrice">
+                {Math.round(
+                  this.props.item.price * (1 - this.props.item.discount / 100)
+                ) + " Р."}
+              </span>
+            </div>
+          ) : (
+            <span className="itemPrice">{this.props.item.price + " Р."}</span>
+          )}
+        </div>
       </div>
     );
   }

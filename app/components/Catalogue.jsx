@@ -22,7 +22,8 @@ class Catalogue extends React.Component {
       itemsPerPage: 9,
       pageCount: 0,
       sortingOrderAsc: true,
-      allSet: false
+      allSet: false,
+      daysStatusNew: 14
     };
   }
 
@@ -175,7 +176,15 @@ class Catalogue extends React.Component {
                     {this.props.activeCategory.goodsToDisplay.length > -1
                       ? this.props.activeCategory.goodsToDisplayOnPage.map(
                           item => (
-                            <div className="catalogue-item" key={item.id}>
+                            <div
+                              className={
+                                1523242602346 - Date.parse(item.date) >
+                                this.state.daysStatusNew * 86400000
+                                  ? "catalogue-item new"
+                                  : "catalogue-item"
+                              }
+                              key={item.id}
+                            >
                               <ItemRender item={item} />
                             </div>
                           )
