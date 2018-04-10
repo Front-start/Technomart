@@ -71,7 +71,10 @@ class Login extends React.Component {
     if (this.props.user) {
       return (
         <div className="user-info">
-          <button className="btn btn-logout" onClick={this.props.logout}>
+          <button
+            className="login-form-btn btn-logout"
+            onClick={this.props.logout}
+          >
             {this.props.user.name} {this.props.user.surname}
           </button>
           <div className="user-menu">
@@ -89,11 +92,14 @@ class Login extends React.Component {
     } else {
       return (
         <div className="login-form">
-          <button className="btn btn-login" onClick={this.toggleModal}>
+          <button
+            className="login-form-btn btn-login"
+            onClick={this.toggleModal}
+          >
             Войти
           </button>
           <Link to="#">
-            <button className="btn btn-reg">Регистрация</button>
+            <button className="login-form-btn btn-reg">Регистрация</button>
           </Link>
           <Modal
             isOpen={this.state.modalOpen}
@@ -112,7 +118,10 @@ class Login extends React.Component {
                 defaultValue="isthebest"
                 onChange={this.updatePasswordInput}
               />
-              <button className="btn" onClick={this.submit}>
+              <button
+                className="login-form-btn btn-flat-green"
+                onClick={this.submit}
+              >
                 Залогинироваться
               </button>
             </div>
