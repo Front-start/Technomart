@@ -90,11 +90,24 @@
         width: 100%;
         li {
             margin: 0 30px;
-            text-decoration: underline;
-            text-decoration-style: dotted;
+            border-color: @red;
+            border-bottom: 1px @red dotted;
+            a {
+                opacity: .3;
+                cursor: pointer;
+            }
+            &:hover {
+                border-bottom-style: solid;
+                a {
+                    opacity: 1;
+                }
+            }
             &.active {
                 color: @red;
-                text-decoration: none;
+                border-bottom: none;
+                a {
+                    opacity: 1;
+                }
             }
         }
     }

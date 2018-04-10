@@ -23,7 +23,7 @@ class Catalogue extends React.Component {
       pageCount: 0,
       sortingOrderAsc: true,
       allSet: false,
-      daysStatusNew: 14
+      newStatusDays: 14
     };
   }
 
@@ -139,17 +139,17 @@ class Catalogue extends React.Component {
                         if (!!item.sort) {
                           return (
                             <li
+                              key={item.id}
                               className={
                                 item.id ==
                                 this.props.activeCategory.activeSortField.id
                                   ? "active"
                                   : ""
                               }
-                              key={item.id}
-                              data-id={item.id}
-                              onClick={this.sort}
                             >
-                              {item.name}
+                              <a data-id={item.id} onClick={this.sort}>
+                                {item.name}
+                              </a>
                             </li>
                           );
                         }
@@ -179,7 +179,7 @@ class Catalogue extends React.Component {
                             <div
                               className={
                                 1523242602346 - Date.parse(item.date) >
-                                this.state.daysStatusNew * 86400000
+                                this.state.newStatusDays * 86400000
                                   ? "catalogue-item new"
                                   : "catalogue-item"
                               }
