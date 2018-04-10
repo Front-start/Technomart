@@ -8,8 +8,8 @@ class ItemRender extends React.Component {
           <img src={"/images/goods" + this.props.item.image} />
         </div>
         <div className="top-2">
-          <a className="catalogue-btn btn-green btn-buy">купить</a>
-          <a className="catalogue-btn btn-green-white btn-bookmark">отложить</a>
+          <a className="btn btn-green btn-buy">купить</a>
+          <a className="btn btn-green-white btn-bookmark">отложить</a>
         </div>
         <div className="bot">
           <span className="itemBrand">Перфоратор {this.props.item.brand}</span>
