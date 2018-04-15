@@ -211,7 +211,7 @@ class Catalogue extends React.Component {
                 </div>
               </div>
             </div>
-            <Info />
+            <Info text={this.props.activeCategory.info} />
           </div>
         </div>
       );

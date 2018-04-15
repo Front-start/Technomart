@@ -9,7 +9,7 @@ class Nav extends React.Component {
     return (
       <nav>
         <ul>
-          {this.props.menuItems.map(item => (
+          {this.props.mainMenuItems.map(item => (
             <li key={item.order}>
               <NavLink exact to={item.link} activeClassName="nav-active">
                 {item.name}
@@ -24,8 +24,8 @@ class Nav extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    menuItems: state
-      .get("menuItems")
+    mainMenuItems: state
+      .getIn(["menus", "mainMenuItems"])
       .sortBy(item => item.get("order"))
       .toJS()
   };

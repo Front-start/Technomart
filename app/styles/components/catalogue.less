@@ -9,7 +9,6 @@
     align-items: center;
     background-color: @lightBlue;
     h1 {
-        font-size: 30px;
         font-weight: normal;
         text-transform: uppercase;
         color: @blue;
@@ -374,4 +373,21 @@
 
 .rc-slider-tooltip {
     display: none; //временное (?) решение
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    width: 940px;
+    padding: 65px 0 65px 0;
+    h2 {
+        font-weight: normal; //Почему-то после парсера заголовок жирный
+        text-transform: uppercase;
+        margin-bottom: 35px;
+    }
+    p {
+        font-family: 'pt sans';
+        font-size: 13px;
+        line-height: 24px;
+    }
 }

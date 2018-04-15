@@ -34,41 +34,9 @@ header .header-order-wrapper .header-btn-red {
 }
 
 header {
-    .header-title {
-        display: flex;
-        position: relative;
+    .header-logo {
         height: 42px;
         width: 220px;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        background-color: @red;
-        font-size: 24px;
-        text-transform: uppercase;
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background-color: #b52933;
-            .transition;
-        }
-        &:hover {
-            background-color: #ca2c37;
-            &:after {
-                background-color: #9a212a;
-                .transition;
-            }
-        }
-        &:active {
-            background-color: #ba2732;
-            &:after {
-                background-color: #8e1e26;
-                .transition;
-            }
-        }
     }
     .header-order-wrapper {
         flex-direction: row;
