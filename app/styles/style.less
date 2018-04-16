@@ -5,56 +5,115 @@
 @import "./components/buttons";
 @import "./components/header";
 @import "./components/top";
-@import "./components/nav";
+@import "./components/menus";
 @import "./components/catalogue";
+@import "./components/footer";
+@import "./components/main-page";
 /* @import 'react-datetime.css'; */
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
 
 a,
 a:active,
 a:hover,
 a:visited {
-  text-decoration: none;
-  outline: none;
+    text-decoration: none;
+    outline: none;
 }
 
 .breadcrumbs ul {
-  width: 940px;
-  height: 60px;
-  display: flex;
-  text-transform: uppercase;
-  list-style: none;
-  align-items: center;
-  font-family: 'PT Sans';
-  font-size: 13px;
-  font-weight: 400;
-  li {
-    align-items: center;
+    width: 940px;
+    height: 60px;
     display: flex;
-    height: 100%;
-    position: relative;
-    &:nth-child(1) {
-      width: 15px;
-      &:before {
+    text-transform: uppercase;
+    list-style: none;
+    align-items: center;
+    font-family: 'PT Sans';
+    font-size: 13px;
+    font-weight: 400;
+    li {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        position: relative;
+        &:nth-child(1) {
+            width: 15px;
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                .bg-img('/icons/icon-home.svg', unset);
+                width: 15px;
+                height: 100%;
+            }
+        }
+        &:nth-child(n+2) {
+            padding-left: 38px;
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                .bg-img('/icons/icon-right.svg', unset);
+                width: 38px;
+                height: 100%;
+            }
+        }
+    }
+}
+
+h1 {
+    font-size: 30px;
+    line-height: 24px;
+}
+
+h2 {
+    font-size: 30px;
+    line-height: 24px;
+}
+
+.gold {
+    color: @gold;
+}
+
+.new {
+    &:after {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        .bg-img('/icons/icon-home.svg', unset);
-        width: 15px;
-        height: 100%;
-      }
+        .bg-img('new flag.png');
+        width: 60px;
+        height: 59px;
+        top: -1px;
+        right: -1px;
     }
-    &:nth-child(n+2) {
-      padding-left: 38px;
-      &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        .bg-img('/icons/icon-right.svg', unset);
-        width: 38px;
-        height: 100%;
-      }
+}
+
+.title-ltblue,
+.title-brown {
+    min-width: 100%;
+    height: 90px;
+    padding: 0 30px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    h1 {
+        font-weight: normal;
+        text-transform: uppercase;
     }
-  }
+}
+
+.title-ltblue {
+    background-color: @lightBlue;
+    h1 {
+        color: @blue;
+    }
 }

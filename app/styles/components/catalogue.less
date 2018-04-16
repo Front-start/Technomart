@@ -1,26 +1,4 @@
 @import "rc-slider-index.css";
-.catalogue-title {
-    min-width: 940px;
-    height: 90px;
-    padding: 0 30px;
-    margin: 20px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: @lightBlue;
-    h1 {
-        font-weight: normal;
-        text-transform: uppercase;
-        color: @blue;
-    }
-}
-
-.catalogue-main-wrapper {
-    width: 940px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
 .catalogue-left-col {
     width: 220px;
     display: flex;
@@ -114,41 +92,46 @@
 
 .catalogue-main-wrapper {
     width: 940px;
-    .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    .pagination-container {
         display: flex;
         width: 100%;
-        padding: 10px;
+        padding: 30px 0 55px 0;
         justify-content: center;
-        li {
-            list-style: none;
-            a {
-                display: block;
-                padding: 0 15px;
-                height: 38px;
-                margin-right: 10px;
-                border: 1px #e5e5e5 solid;
-                border-radius: 3px;
-                font-family: 'pt sans';
-                font-size: 13px;
-                text-transform: uppercase;
-                line-height: 38px;
-                cursor: pointer;
-                &:hover {
-                    border-color: #bdc6ca;
-                }
-                &:active {
-                    border-color: #ee3643;
+        .pagination {
+            display: flex;
+            li {
+                list-style: none;
+                a {
+                    display: block;
+                    padding: 0 15px;
+                    height: 38px;
+                    margin-right: 10px;
+                    border: 1px #e5e5e5 solid;
+                    border-radius: 3px;
+                    font-family: 'pt sans';
+                    font-size: 13px;
+                    text-transform: uppercase;
+                    line-height: 38px;
+                    cursor: pointer;
+                    &:hover {
+                        border-color: #bdc6ca;
+                    }
+                    &:active {
+                        border-color: #ee3643;
+                    }
                 }
             }
-        }
-        .active a {
-            color: white;
-            background: #ee3643;
-            border: 0px;
-            cursor: default;
-        }
-        .disabled {
-            display: none;
+            .active a {
+                color: white;
+                background: #ee3643;
+                border: 0px;
+                cursor: default;
+            }
+            .disabled {
+                display: none;
+            }
         }
     }
     .filter-list {
@@ -357,17 +340,6 @@
                 margin-top: 4px;
             }
         }
-        &.new {
-            &:after {
-                content: '';
-                position: absolute;
-                .bg-img('new flag.png');
-                width: 60px;
-                height: 59px;
-                top: -1px;
-                right: -1px;
-            }
-        }
     }
 }
 
@@ -375,19 +347,23 @@
     display: none; //временное (?) решение
 }
 
-.info-container {
+.category-info {
     display: flex;
-    flex-direction: column;
-    width: 940px;
+    justify-content: center;
+    width: 100%;
     padding: 65px 0 65px 0;
-    h2 {
-        font-weight: normal; //Почему-то после парсера заголовок жирный
-        text-transform: uppercase;
-        margin-bottom: 35px;
-    }
-    p {
-        font-family: 'pt sans';
-        font-size: 13px;
-        line-height: 24px;
+    background-color: @lightBlue;
+    .category-info-container {
+        width: 940px;
+        h2 {
+            font-weight: normal; //Почему-то после парсера заголовок жирный
+            text-transform: uppercase;
+            margin-bottom: 35px;
+        }
+        p {
+            font-family: 'pt sans';
+            font-size: 13px;
+            line-height: 24px;
+        }
     }
 }

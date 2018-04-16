@@ -8,7 +8,7 @@ class Nav extends React.Component {
   render() {
     return (
       <nav>
-        <ul>
+        <ul className="nav-menu main-menu">
           {this.props.mainMenuItems.map(item => (
             <li key={item.order}>
               <NavLink exact to={item.link} activeClassName="nav-active">

@@ -1,23 +1,4 @@
 //basic tags and general rules
-*,
-*::after,
-*::before {
-    box-sizing: border-box;
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-
-h1 {
-    font-size: 30px;
-    line-height: 24px;
-}
-
-h2 {
-    font-size: 30px;
-    line-height: 24px;
-}
-
 body {
     font-family: "Cuprum";
     font-weight: normal;
@@ -100,27 +81,17 @@ nav {
 .catalogue-component {
     max-width: 1200px;
     display: flex;
+    align-items: center;
     flex-direction: column;
 }
 
 .catalogue {
-    max-width: 1200px;
-    min-width: 940px;
+    width: 940px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: white;
-}
-
-.info {
-    max-width: 1200px;
-    min-width: 940px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: @lightBlue;
 }
 
 footer {
@@ -134,6 +105,7 @@ footer {
     display: flex;
     justify-content: center;
     background-color: @blue;
+    padding-bottom: 15px;
 }
 
 .footer-bot {

@@ -118,7 +118,7 @@ class Catalogue extends React.Component {
           <Breadcrumbs location={this.props.location} />
           <div className="catalogue-component">
             <div className="catalogue">
-              <div className="catalogue-title">
+              <div className="title-ltblue">
                 <h1>{this.props.activeCategory.name}</h1>
               </div>
               <div className="catalogue-main-wrapper">
@@ -192,7 +192,7 @@ class Catalogue extends React.Component {
                       : "Нет товаров в этой (под)категории"}
                   </div>
                 </div>
-                <div className="pagination">
+                <div className="pagination-container">
                   <ReactPaginate
                     previousLabel={"Предыдущая"}
                     nextLabel={"Следующая"}

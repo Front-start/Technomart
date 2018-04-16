@@ -75,6 +75,46 @@
     }
 }
 
+.social-vk,
+.social-fb,
+.social-inst {
+    position: relative;
+    display: inline-flex;
+    background-color: @darkerBlue;
+    height: 44px;
+    margin-left: 5px;
+    width: 44px;
+    border-radius: 22px;
+    &:hover,
+    &:active {
+        background-color: @red;
+    }
+}
+
+.social-vk:after {
+    position: absolute;
+    content: '';
+    height: 44px;
+    width: 44px;
+    .bg-img('/icons/icon-vk.png', initial);
+}
+
+.social-fb:after {
+    position: absolute;
+    content: '';
+    height: 44px;
+    width: 44px;
+    .bg-img('/icons/icon-fb.png', initial);
+}
+
+.social-inst:after {
+    position: absolute;
+    content: '';
+    height: 44px;
+    width: 44px;
+    .bg-img('/icons/icon-inst.png', initial);
+}
+
 .top-user-login,
 .login-modal {
     .login-form-btn {
