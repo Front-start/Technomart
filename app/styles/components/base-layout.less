@@ -42,14 +42,13 @@ header {
     background-color: @lightBlue;
 }
 
-nav {
+nav,
+.index-service-wrapper {
     max-width: 1200px;
     min-width: 940px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
-    height: 120px;
     background-color: @lightBlue;
 }
 
@@ -70,12 +69,21 @@ nav {
     background-color: white;
 }
 
-.index {
+.index-cards,
+.index-popular-brands,
+.index-popular-goods,
+.index-about {
     width: 940px;
     display: flex;
     flex-direction: column;
     align-self: center;
     background-color: white;
+}
+
+.index-service {
+    width: 940px;
+    display: flex;
+    flex-direction: column;
 }
 
 .catalogue-component {

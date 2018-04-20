@@ -1,0 +1,35 @@
+@import "/node_modules/react-responsive-carousel/lib/styles/carousel.min.css";
+.index-cards {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card {
+    width: calc(~"33.33% - 13px");
+    min-width: 300px;
+    display: flex;
+    height: 123px;
+    background-color: red;
+    margin-bottom: 20px;
+}
+
+.card-2xwidth {
+    width: calc(~"66.66% - 7px");
+    display: flex;
+    height: 266px;
+    background-color: red;
+    margin-bottom: 20px;
+}
+
+.card-2xheight {
+    width: calc(~"33.33% - 13px");
+    display: flex;
+    flex-direction: column;
+    height: 266px;
+    margin-bottom: 20px;
+    .card:last-child {
+        margin-bottom: 0;
+    }
+}

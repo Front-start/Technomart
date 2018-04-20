@@ -52,7 +52,6 @@ class Filter extends React.Component {
   }
 
   selectRangeSlider(e) {
-    console.log(e.target);
     this.setState({ sliderId: e.target.dataset.id });
   }
 
