@@ -12,7 +12,10 @@ class Slider extends React.Component {
     this.autoPlay = this.autoPlay.bind(this);
 
     this.state = {
-      slides: ["<div>123</div>", "<div>312</div>", "3", "4", "5"],
+      slides: [
+        "<div className='slide1'><a href='/catalogue/1/1' className='btn btn-wider btn-red'>ОТКРЫТЬ КАТАЛОГ</a></div>",
+        "<div><img src='/images/slider/2.jpg'/></div>"
+      ],
       currentSlide: 0
     };
   }
@@ -55,6 +58,9 @@ class Slider extends React.Component {
   componentDidMount() {
     this.autoPlay();
   }
+  componentWillUnmount() {
+    clearTimeout(this.state.timerId);
+  }
 
   render() {
     return (
@@ -63,7 +69,11 @@ class Slider extends React.Component {
         onMouseEnter={() => this.hoverHandler("in")}
         onMouseLeave={() => this.hoverHandler("out")}
       >
-        <div className="slider-button-prev" onClick={this.prevSlide} />
+        <a
+          href="#"
+          className="slider-button-prev arrow-left"
+          onClick={this.prevSlide}
+        />
         {this.state.slides.map((slide, num) => {
           return (
             <div
@@ -78,7 +88,8 @@ class Slider extends React.Component {
         })}
         <div className="slider-indicator-list">
           {this.state.slides.map((slide, num) => (
-            <div
+            <a
+              href="#"
               data-num={num}
               key={num}
               className={
@@ -90,7 +101,11 @@ class Slider extends React.Component {
             />
           ))}
         </div>
-        <div className="slider-button-next" onClick={this.nextSlide} />
+        <a
+          href="#"
+          className="slider-button-next arrow-right"
+          onClick={this.nextSlide}
+        />
       </div>
     );
   }

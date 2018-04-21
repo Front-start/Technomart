@@ -2,13 +2,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 134px;
+    width: 135px;
     height: 38px;
     text-transform: uppercase;
     color: #fff;
     border-radius: 3px;
     cursor: pointer;
     margin: 4px;
+}
+
+.btn-wider {
+    width: 195px;
+}
+
+.btn-wide {
+    width: 293px;
 }
 
 .btn-green {
@@ -20,6 +28,27 @@
     &:active {
         background-color: #518534;
         box-shadow: none;
+    }
+}
+
+.btn-red {
+    background-color: @red;
+    &:hover {
+        background-color: @darkerRed;
+    }
+    &:active {
+        background-color: @darkRed;
+    }
+}
+
+.btn-gray {
+    font-size: 14px;
+    background-color: rgba(0, 0, 0, .1);
+    &:hover {
+        background-color: rgba(0, 0, 0, .2);
+    }
+    &:active {
+        background-color: rgba(0, 0, 0, .3);
     }
 }
 
@@ -66,11 +95,11 @@
     text-transform: uppercase;
     box-shadow: 0px 5px 0px 0px rgba(181, 41, 51, 1);
     &:hover {
-        background-color: #ca2c37;
+        background-color: @darkerRed;
         box-shadow: 0px 5px 0px 0px rgba(154, 33, 42, 1);
     }
     &:active {
-        background-color: #ba2732;
+        background-color: @darkRed;
         box-shadow: 0px 5px 0px 0px rgba(142, 30, 38, 1);
     }
 }

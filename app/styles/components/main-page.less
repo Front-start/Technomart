@@ -1,25 +1,70 @@
-@import "/node_modules/react-responsive-carousel/lib/styles/carousel.min.css";
 .index-cards {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 60px;
 }
 
 .card {
+    position: relative;
     width: calc(~"33.33% - 13px");
     min-width: 300px;
     display: flex;
     height: 123px;
-    background-color: red;
     margin-bottom: 20px;
+    padding: 20px;
+    color: #fff;
+}
+
+.card-text-container {
+    width: 66.666%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    span {
+        display: flex;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 30px;
+    }
+}
+
+.card-image-container {
+    height: 100%;
+    width: 33.333%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    img {
+        max-width: 100%;
+    }
+}
+
+.card-mats {
+    background-color: #f6b22d;
+}
+
+.card-tools {
+    background-color: #4aafde;
+}
+
+.card-tech {
+    background-color: #cc79d1;
+}
+
+.card-discount {
+    background-color: #85d179;
+}
+
+.card-delivery {
+    background-color: #f6b22d;
 }
 
 .card-2xwidth {
     width: calc(~"66.66% - 7px");
     display: flex;
     height: 266px;
-    background-color: red;
     margin-bottom: 20px;
 }
 
