@@ -69,11 +69,7 @@ class Slider extends React.Component {
         onMouseEnter={() => this.hoverHandler("in")}
         onMouseLeave={() => this.hoverHandler("out")}
       >
-        <a
-          href="#"
-          className="slider-button-prev arrow-left"
-          onClick={this.prevSlide}
-        />
+        <a className="slider-button-prev arrow-left" onClick={this.prevSlide} />
         {this.state.slides.map((slide, num) => {
           return (
             <div
@@ -89,7 +85,6 @@ class Slider extends React.Component {
         <div className="slider-indicator-list">
           {this.state.slides.map((slide, num) => (
             <a
-              href="#"
               data-num={num}
               key={num}
               className={
@@ -102,7 +97,6 @@ class Slider extends React.Component {
           ))}
         </div>
         <a
-          href="#"
           className="slider-button-next arrow-right"
           onClick={this.nextSlide}
         />
