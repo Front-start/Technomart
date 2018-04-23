@@ -21,7 +21,7 @@ class PopularBrands extends React.Component {
             <img src="/images/brands/DeWALT.png" />
           </div>
           <div className="catalogue-item-small">
-            <img src="/images/brands/Интерскол.png" />
+            <img src="/images/brands/Interskol.png" />
           </div>
           <div className="catalogue-item-small">
             <img src="/images/brands/Hitachi.png" />
