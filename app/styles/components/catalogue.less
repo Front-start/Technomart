@@ -249,8 +249,27 @@
 .catalogue-items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     width: 100%;
+}
+
+.catalogue-items-3cols {
+    .catalogue-item,
+    .catalogue-item-small {
+        margin-right: 20px;
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+    }
+}
+
+.catalogue-items-4cols {
+    .catalogue-item,
+    .catalogue-item-small {
+        margin-right: 20px;
+        &:nth-child(4n) {
+            margin-right: 0;
+        }
+    }
 }
 
 .catalogue-item {

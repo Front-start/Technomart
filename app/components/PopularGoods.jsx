@@ -13,7 +13,7 @@ class PopularGoods extends React.Component {
           <h1>Популярные товары:</h1>
           <a className="btn btn-red btn-wide">все популярные товары</a>
         </div>
-        <div className="catalogue-items">
+        <div className="catalogue-items catalogue-items-4cols">
           {this.props.popularGoodsList &&
           this.props.popularGoodsList.length > -1
             ? this.props.popularGoodsList.map(item => (

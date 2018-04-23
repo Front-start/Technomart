@@ -172,7 +172,7 @@ class Catalogue extends React.Component {
                       />
                     </div>
                   </div>
-                  <div className="catalogue-items">
+                  <div className="catalogue-items catalogue-items-3cols">
                     {this.props.activeCategory.goodsToDisplay.length > -1
                       ? this.props.activeCategory.goodsToDisplayOnPage.map(
                           item => (

@@ -10,7 +10,7 @@ class PopularBrands extends React.Component {
           <h1>Популярные производители:</h1>
           <a className="btn btn-red btn-wide">все популярные производители</a>
         </div>
-        <div className="catalogue-items">
+        <div className="catalogue-items catalogue-items-4cols">
           <div className="catalogue-item-small">
             <img src="/images/brands/bosch.png" />
           </div>
