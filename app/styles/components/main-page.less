@@ -1,9 +1,21 @@
+.index-cards,
+.index-popular-brands,
+.index-popular-goods,
+.index-about {
+    width: 940px;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+    background-color: white;
+}
+
 .index-cards {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 60px;
+    margin-bottom: 35px;
 }
 
 .card {
@@ -77,4 +89,14 @@
     .card:last-child {
         margin-bottom: 0;
     }
+}
+
+.index-service {
+    width: 940px;
+    display: flex;
+    flex-direction: column;
+}
+
+.index-popular-brands {
+    margin-bottom: 65px;
 }

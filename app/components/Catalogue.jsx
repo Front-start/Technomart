@@ -113,12 +113,12 @@ class Catalogue extends React.Component {
   render() {
     if (this.state.allSet) {
       return (
-        <div className="main">
+        <div className="wrapper-white">
           <Nav />
           <Breadcrumbs location={this.props.location} />
           <div className="catalogue-component">
             <div className="catalogue">
-              <div className="title-ltblue">
+              <div className="titlebar title-ltblue">
                 <h1>{this.props.activeCategory.name}</h1>
               </div>
               <div className="catalogue-main-wrapper">
@@ -172,7 +172,7 @@ class Catalogue extends React.Component {
                       />
                     </div>
                   </div>
-                  <div className="catalogue-right-col-items">
+                  <div className="catalogue-items">
                     {this.props.activeCategory.goodsToDisplay.length > -1
                       ? this.props.activeCategory.goodsToDisplayOnPage.map(
                           item => (
@@ -181,7 +181,7 @@ class Catalogue extends React.Component {
                                 1523242602346 - Date.parse(item.date) >
                                 this.state.newStatusDays * 86400000
                                   ? "catalogue-item new"
-                                  : "catalogue-item"
+                                  : "catalogue-item "
                               }
                               key={item.id}
                             >
