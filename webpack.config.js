@@ -1,4 +1,5 @@
 var path = require("path");
+var webpack = require("webpack");
 
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var ImageminPlugin = require("imagemin-webpack-plugin").default;
@@ -71,6 +72,9 @@ module.exports = {
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i
     }),
-    new UglifyJsPlugin()
+    new UglifyJsPlugin(),
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": '"production"'
+    })
   ]
 };
