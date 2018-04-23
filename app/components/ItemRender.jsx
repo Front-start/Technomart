@@ -18,12 +18,12 @@ class ItemRender extends React.Component {
           {this.props.item.discount ? (
             <div className="itemDiscountPrice-wrapper">
               <span className="itemFullPrice">
-                {this.props.item.price + " Р."}
+                {Math.round(
+                  this.props.item.price * (1 + this.props.item.discount / 100)
+                ) + " Р."}
               </span>
               <span className="itemDiscountPrice">
-                {Math.round(
-                  this.props.item.price * (1 - this.props.item.discount / 100)
-                ) + " Р."}
+                {this.props.item.price + " Р."}
               </span>
             </div>
           ) : (
