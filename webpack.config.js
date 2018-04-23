@@ -71,10 +71,6 @@ module.exports = {
     ]),
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i
-    }),
-    new UglifyJsPlugin(),
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": '"production"'
     })
   ]
 };
