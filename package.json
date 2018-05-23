@@ -7,6 +7,7 @@
     "dev": "webpack-dev-server --hot --open --config webpack.dev-config.js",
     "build": "webpack --config webpack.config.js -p"
   },
+
   "dependencies": {},
   "devDependencies": {
     "html-react-parser": "^0.4.3",
